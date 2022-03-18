@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Marvels_Studio.urls')) # подключаем URL нашего приложения
+    path('', include('Marvels_Studio.urls')), # подключаем URL нашего приложения
+    path('hello/', views.hello, name='hello')
 ]
 
 # Джанго будет раздавть медия при включенном DEBUG

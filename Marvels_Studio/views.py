@@ -9,5 +9,9 @@ class MoviesView(View): # создаём класс MoviesView и наследу
 	def get(self, request): # создаём метод get которая будет приниать запросы http
 		# request - присланная информация от нашего клиента, принимает запросы от браузера
 		movies = Movie.objects.all()
-		return render(request, 'movies/Home.html', {'movie_list': movies}) # ключ словарь, записи
+		return render(request, 'movies/Movies.html', {'movie_list': movies}) # ключ словарь, записи
 	# наших фильмов
+
+
+def Movies(request):
+	return render(request, 'movies/Movies.html')
