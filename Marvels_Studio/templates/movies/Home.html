@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+{% for movie in movie_list%}
+
+{{movie.title}}<br>
+{{movie.year}} <br>
+{{movie.tagline}}<br>
+{% endfor %}
+
+</body>
+</html>
