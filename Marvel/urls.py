@@ -22,11 +22,14 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Marvels_Studio.urls')), # подключаем URL нашего приложения
-    path('hello/', views.hello, name='hello')
+    path('hello/', views.hello, name='hello'),
+    path('error/', views.error)
 ]
 
 # Джанго будет раздавть медия при включенном DEBUG
 
 if settings.DEBUG: # если наш DEBUG включен, то
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    # таким образом Django будет раздавать файлы при включенном Debug режиме
+
+
+# таким образом Django будет раздавать файлы при включенном Debug режиме

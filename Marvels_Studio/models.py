@@ -72,7 +72,7 @@ class Movie(models.Model):
 	title = models.CharField("Название", max_length=100)
 	tagline = models.CharField("Слоган", max_length=100, default='')
 	description = models.TextField("Описание")
-	#poster = models.ImageField('Постер', upload_to='poster/', default='default title')
+	poster = models.ImageField('Постер', upload_to='poster/', default='default title')
 	year = models.PositiveSmallIntegerField('Дата выхода', default=2008)
 	country = models.CharField('Страна', max_length=30)
 	# создаем связь многие ко многим ManyToManyField

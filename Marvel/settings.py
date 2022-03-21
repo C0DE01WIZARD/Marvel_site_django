@@ -37,7 +37,7 @@ INSTALLED_APPS = [ # добавление приложения
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', # собирает статические файлы со всех ваших приложений
 ]
 
 MIDDLEWARE = [ # список

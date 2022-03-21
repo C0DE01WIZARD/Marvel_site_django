@@ -13,5 +13,12 @@ class MoviesView(View): # создаём класс MoviesView и наследу
 	# наших фильмов
 
 
+class MovieDetailViews(View):
+	def get(self, request, pk): # принимаем get запрос, на который передаётся requset pk
+		movie = Movie.objects.get(id=pk) # делаем запрос в БД через модель мовие, метод get который
+		# получает одну запись
+		return render(request, 'movies/movie_detail.html', {'movie': movie})
+
+
 def Movies(request):
 	return render(request, 'movies/Movies.html')

@@ -5,11 +5,18 @@
     <title>Главная</title>
 </head>
 <body>
-{% for movie in movie_list%}
+
+{% load static %}
+{% for movie in movie_list%}<br>
+{{ actor.name }}
+ <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
 
 {{movie.title}}<br>
 {{movie.year}} <br>
 {{movie.tagline}}<br>
+{{movie.poster}}<br>
+{{movie.category}}<br>
+{{movie.fees_in_world}}<h5>рублей</h5>
 {% endfor %}
 
 </body>
