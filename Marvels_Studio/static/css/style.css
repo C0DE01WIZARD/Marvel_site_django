@@ -2,7 +2,7 @@ html,
 body {
     margin: 0;
     font-size: 100%;
-    background: #fff;
+    background: #;
     font-family: 'Lato', sans-serif;
     scroll-behavior: smooth;
 }
@@ -58,7 +58,7 @@ ul {
 }
 
 body img {
-    border-radius: 4px;
+    border-radius: 18px;
     -webkit-border-radius: 4px;
     -o-border-radius: 4px;
     -moz-border-radius: 4px;

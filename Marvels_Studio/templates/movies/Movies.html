@@ -3,18 +3,18 @@
 <html lang="ru">
 <head>
     <!-- //Meta tag Keywords -->
-    <title>Clack Website Template</title>
+    <title>Marvel Studios</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- //Meta tag Keywords -->
     <!-- Custom-Files -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> <!--Работает-->
     <!-- Bootstrap-Core-CSS -->
     <!--/ Style-CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"> <!--Работает-->
     <!--// Style-CSS -->
     <!-- font-awesome-icons -->
-    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet"> <!--Загрузка иконок-->
     <!-- //font-awesome-icons -->
     <!-- /Fonts -->
     <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700"
@@ -28,7 +28,7 @@
 
 <div id="page" class="page"><!-- mian-content -->
     <div class="main-banner bg bg1" id="home"
-         style="background-color: rgba(25, 0, 0, 0); margin-top: 0px; background-image: url({% static 'single-post-pic.jpg' %};);">
+         style="background-color: rgba(25, 0, 0, 0); margin-top: 0px; background-image: url({% static 'single-post-pi.jpg' %})">
         <!-- header -->
         <header class="header">
             <div class="container-fluid px-lg-5">
@@ -36,8 +36,10 @@
                 <nav class="py-4">
                     <div id="logo">
                         <h1><a href="index.html" class="editContent"
-                               style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: &quot;Source Sans Pro&quot;, sans-serif;">DjangoMovie</a>
+                               style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(2, 255, 255); font-size: 40px; background-color: rgba(122, 0, 0, 0); font-family: &quot;Source Sans Pro&quot;, sans-serif;">Фильмы, сериалы и мультфильмы_</a>
                         </h1>
+
+                        <h2> MARVEL STUDIOS</h2>
                     </div>
 
                     <label for="drop" class="toggle">Menu</label>
@@ -68,8 +70,10 @@
         <!-- //header -->
         <!--/banner-->
         <div class="banner-info">
-            <p class="editContent">лучший сайт на django 3</p>
-            <h3 class="mb-4 editContent">Все о кино</h3>
+            <p class="editContent">Сайт киновселенной MARVEL STODIOS</p>
+            <h2 class="mb-4 editContent">Все о фильмах Марвел</h2>
+
+
             <div class="ban-buttons">
 
 
@@ -80,12 +84,15 @@
     </div>
     <!--//main-content-->
     <!---->
+      <img src="{% static 'single-post-pic.jpg' %}" align='center' alt="Главное описание" width="1200" height="670" border="8">
     <ol class="breadcrumb editContent">
         <li class="breadcrumb-item">
-            <a href="index.html" class="editContent">ЛЯЙЛЯ САЙТЫ</a>
+
+            <a href="index.html" class="editContent">ГЛАВНАЯ СТРАНИЦА</a>
         </li>
-        <li class="breadcrumb-item active editContent">Single Page</li>
+        <li class="breadcrumb-item active editConten">ОДНА СТРАНИЦА</li>
     </ol>
+
     <!---->
     <!-- banner -->
     <section class="ab-info-main py-md-5 py-4 editContent"
@@ -109,7 +116,7 @@
                         <ul class="w3layouts-box-list">
                             <li class="editContent">
                                 <input type="checkbox" class="checked">
-                                <span class="span editContent">Аниме</span>
+                                <span class="span editContent">Приключение</span>
                             </li>
                             <li class="editContent">
                                 <input type="checkbox" class="checked">
@@ -121,7 +128,7 @@
                             </li>
                             <li class="editContent">
                                 <input type="checkbox" class="checked">
-                                <span class="span editContent">Ужасы</span>
+                                <span class="span editContent">Хорор</span>
                             </li>
                         </ul>
                     </div>
@@ -215,59 +222,7 @@
                     </div>
                     <!-- //reviews -->
                     <!-- deals -->
-                    <div class="deal-leftmk left-side">
-                        <h3 class="sear-head editContent">Последние добавленные</h3>
-                        <div class="special-sec1 row mt-3 editContent">
-                            <div class="img-deals col-md-4">
-                                <img src="bundles/images/s4.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="img-deal1 col-md-4">
-                                <h3 class="editContent">Рэмбо: Последняя кровь</h3>
-                                <a href="moviesingle.html" class="editContent"></a>
-                            </div>
 
-                        </div>
-                        <div class="special-sec1 row mt-3 editContent">
-                            <div class="img-deals col-md-4">
-                                <img src="bundles/images/s2.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="img-deal1 col-md-8">
-                                <h3 class="editContent">Холодное сердце 2</h3>
-                                <a href="moviesingle.html" class="editContent"></a>
-                            </div>
-
-                        </div>
-                        <div class="special-sec1 row mt-3 editContent">
-                            <div class="img-deals col-md-4">
-                                <img src="bundles/images/s1.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="img-deal1 col-md-8">
-                                <h3 class="editContent">К звездам</h3>
-                                <a href="moviesingle.html" class="editContent"></a>
-                            </div>
-
-                        </div>
-                        <div class="special-sec1 row mt-3 editContent">
-                            <div class="img-deals col-md-4">
-                                <img src="bundles/images/s5.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="img-deal1 col-md-8">
-                                <h3 class="editContent">Терминатор: Темные судьбы</h3>
-                                <a href="moviesingle.html" class="editContent"></a>
-                            </div>
-
-                        </div>
-                        <div class="special-sec1 row mt-3 editContent">
-                            <div class="img-deals col-md-4">
-                                <img src="bundles/images/s3.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="img-deal1 col-md-8">
-                                <h3 class="editContent">Джокер</h3>
-                                <a href="moviesingle.html" class="editContent"></a>
-                            </div>
-
-                        </div>
-                    </div>
                     <!-- //deals -->
 
                 </div>
@@ -332,34 +287,32 @@
                     <h2 class="logo-2 mb-lg-4 mb-3">
                         <a href="index.html" class="editContent">
                                 <span class="fa" aria-hidden="true">
-                                    Django School
+                                    Сайт для фанатов Марвел
                                 </span>
                         </a>
                     </h2>
                     <p class="editContent">
-                        Канал для программистов и людей, которые хотят развиваться в сфере IT.
-                        Видео уроки по python 3, Django 2, Django 3, JavaScript, Vue.js, HTML, CSS
-                        и многое другое.
+
                     </p>
-                    <h4 class="sub-con-fo ad-info my-4 editContent">Catch on Social</h4>
+                    <h4 class="sub-con-fo ad-info my-4 editContent">Ищите нас в социальных сетях</h4>
                     <ul class="w3layouts_social_list media-soc list-unstyled">
                         <li>
-                            <a href="#" class="w3pvt_facebook editContent">
+                            <a href="https://www.youtube.com/watch?v=WTXPLwrK398&list=PLF-NY6ldwAWrb6nQcPL21XX_-AmivFAYq&index=8" class="w3pvt_facebook editContent">
                                 <span class="fa fa-facebook-f"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="w3pvt_twitter editContent">
+                            <a href="https://www.youtube.com/watch?v=WTXPLwrK398&list=PLF-NY6ldwAWrb6nQcPL21XX_-AmivFAYq&index=8" class="w3pvt_twitter editContent">
                                 <span class="fa fa-twitter"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="w3pvt_dribble editContent">
+                            <a href="https://www.youtube.com/watch?v=WTXPLwrK398&list=PLF-NY6ldwAWrb6nQcPL21XX_-AmivFAYq&index=8" class="w3pvt_dribble editContent">
                                 <span class="fa fa-dribbble"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="w3pvt_google editContent">
+                            <a href="https://www.youtube.com/watch?v=WTXPLwrK398&list=PLF-NY6ldwAWrb6nQcPL21XX_-AmivFAYq&index=8" class="w3pvt_google editContent">
                                 <span class="fa fa-google-plus"></span>
                             </a>
                         </li>
@@ -370,11 +323,10 @@
                         <h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3">
                             Newsletter</h3>
 
-                        <p class="editContent">By subscribing to our mailing list you will always
-                            get latest news and updates from us.</p>
+                        <p class="editContent">Подписавшись на нашу рассылку, вы всегда будете получать последние новости и обновления от нас.</p>
                         <form action="#" method="post" class="w3layouts-newsletter">
                             <input type="email" name="Email" class="editContent"
-                                   placeholder="Enter your email..." required="">
+                                   placeholder="Введите ваш email" required="">
                             <button class="btn1 btn"><span class="fa fa-paper-plane-o"
                                                            aria-hidden="true"></span></button>
 
@@ -386,10 +338,10 @@
                                 Разделы</h3>
                             <ul class="list-unstyled w3layouts-icons">
                                 <li>
-                                    <a href="index.html" class="editContent">Главная</a>
+                                    <a href="http://127.0.0.1:8000/" class="editContent">Главная</a>
                                 </li>
                                 <li>
-                                    <a href="about.html" class="editContent">Категории</a>
+                                    <a href="http://127.0.0.1:8000/your-template.html" class="editContent">Категории</a>
                                 </li>
                                 <li>
                                     <a href="contact.html" class="editContent">Контакты</a>
@@ -400,40 +352,31 @@
                             <!-- social icons -->
                             <div class="agileinfo_social_icons">
                                 <h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3">
-                                    Pages</h3>
+                                    Страницы</h3>
                                 <ul class="list-unstyled w3layouts-icons">
 
                                     <li>
                                         <a href="#" class="editContent">About Us</a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="editContent">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="editContent">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="editContent">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="editContent">About Us</a>
-                                    </li>
+
                                 </ul>
+
                             </div>
                             <!-- social icons -->
                         </div>
+
                         <div class="col-md-4 footer-grid_section_w3layouts my-md-0 my-5">
                             <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3 editContent">
-                                Contact Info</h3>
+                                Контактная информация</h3>
                             <div class="contact-info">
                                 <div class="footer-address-inf my-4">
                                     <h4 class="ad-info mb-2 editContent">Email </h4>
-                                    <p class="editContent"><a href="mailto:info@example.com">info@example.com</a>
+                                    <p class="editContent"><a href="mailto:info@example.com">usmanov-rushan@mail.ru</a>
                                     </p>
                                 </div>
                                 <div class="footer-address-inf">
-                                    <h4 class="ad-info mb-2 editContent">Location</h4>
-                                    <p class="editContent">New York City</p>
+                                    <h4 class="ad-info mb-2 editContent">Расположение</h4>
+                                    <p class="editContent">Россия</p>
                                 </div>
                             </div>
                         </div>
@@ -449,8 +392,8 @@
     <div class="cpy-right py-3">
         <div class="container">
             <div class="row">
-                <p class="col-md-10 text-left">© 2019 DjangoMovie. All rights reserved | Design by
-                    <a href="https://djangochannel.com"> DJANGO SCHOOL.</a>
+                <p class="col-md-10 text-left">© 2022 Marvel Studios. Все права защищены |
+                    <a href="https://djangochannel.com"> by Rushan Usmanov.</a>
                 </p>
                 <!-- move top icon -->
                 <a href="#home" class="move-top text-right col-md-2"><span
