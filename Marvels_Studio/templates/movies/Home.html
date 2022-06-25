@@ -6,10 +6,11 @@
 </head>
 <body>
 
+
 {% load static %}
 {% for movie in movie_list%}<br>
-{{ actor.name }}
- <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
+<h1>{{ actor.name }}</h1>
+<img src="{{ movie.poster.url }}" class="img-fluid" alt="">
 
 {{movie.title}}<br>
 {{movie.year}} <br>

@@ -6,6 +6,22 @@ from datetime import date
 
 # пишем модели
 
+
+class Famous_actors(models.Model):
+	name = models.TextField("Имя актёра", max_length=20)
+	age = models.CharField("Возраст актёра", max_length=3)
+	date = models.DateField("День рождение", max_length=20)
+	image = models.ImageField("Фотография создателя Marvel", upload_to='famous/', default='default title')
+
+	def __str__(self):
+		return self.name
+
+	class Meta:
+		verbose_name = "Известный актёр"
+		verbose_name_plural = 'Известные актёры'
+
+
+
 class Category(models.Model): # импортируем models из django.db наследуются от класса Model
 	name = models.CharField("Категория", max_length=150)
 	description = models.TextField('Описание', max_length=300)

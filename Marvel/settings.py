@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []  # разрешенные хосты, домены
 # Application definition
 
 INSTALLED_APPS = [  # добавление приложения
-	'Marvels_Studio',
+	'Marvels_Studio', # новое приложение
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
@@ -111,12 +111,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
-STATIC_URL = '/static/'
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/' #какой URL будет у нашей статики
+STATIC_DIR = os.path.join(BASE_DIR, 'static') #директория нашей статики
 STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # путь к директоии
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # передать путь к директории media
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
