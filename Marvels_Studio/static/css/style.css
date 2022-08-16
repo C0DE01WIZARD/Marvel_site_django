@@ -16,6 +16,11 @@ body a {
     -ms-transition: 0.5s all;
 }
 
+.img-fluid {
+max-width: 250px;
+height:auto
+
+}
 a:hover {
     text-decoration: none;
 

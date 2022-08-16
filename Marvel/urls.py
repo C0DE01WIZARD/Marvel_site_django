@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings # импортируем из django.counf из settings
 from django.conf.urls.static import static
+
+from Marvels_Studio.views import MovieAPI
 from . import views
 
 urlpatterns = [
@@ -24,7 +26,7 @@ urlpatterns = [
     path('', include('Marvels_Studio.urls')), # подключаем URL нашего приложения
     path('hello/', views.hello, name='hello'),
     path('error/', views.error),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api/v1/MovieAPI/', MovieAPI.as_view())
 ]
 
 # Джанго будет раздавть медия при включенном DEBUG

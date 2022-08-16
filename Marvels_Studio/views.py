@@ -2,14 +2,11 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.views.generic import ListView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import generics # импортируем для представления DRF
 
 from .models import Movie #
 from .models import Actor
-
-# Create your views here.
-
-
-# REST API
+from .serializers import MovieSerializer # REST API
 
 def reg(request):
 	return render(request, 'movies/regis.html')
@@ -38,4 +35,6 @@ class Detail(View): # создаём класс Detail и наследуемся
 		return render(request, 'movies/detail.html', {'movie': movie})
 
 
-
+class MovieAPI(generics.ListAPIView):
+	queryset = Movie.objects.all()
+	serializer_class = MovieSerializer
