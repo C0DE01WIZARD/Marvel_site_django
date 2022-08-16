@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin): # класс для конфингура�
 
 
 admin.site.register(Famous_actors)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Category, CategoryAdmin) # регистрируем нашу нашу модель
 admin.site.register(Genre)
 admin.site.register(Actor)
 admin.site.register(Movie)

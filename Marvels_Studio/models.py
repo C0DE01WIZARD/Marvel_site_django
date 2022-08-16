@@ -1,6 +1,6 @@
-
 from django.db import models
 from datetime import date
+
 
 # Create your models here.
 
@@ -21,19 +21,19 @@ class Famous_actors(models.Model):
 		verbose_name_plural = 'Известные актёры'
 
 
-
-class Category(models.Model): # импортируем models из django.db наследуются от класса Model
+class Category(models.Model):  # импортируем models из django.db наследуются от класса Model
 	name = models.CharField("Категория", max_length=150)
 	description = models.TextField('Описание', max_length=300)
-	url = models.SlugField(max_length=150, unique=True) # unique - уникальное
+	url = models.SlugField(max_length=150, unique=True)  # unique - уникальное
 
-# метод __str__ для возвращения строкового представления модели
+	# метод __str__ для возвращения строкового представления модели
 	def __str__(self):
 		return self.name
 
 	class Meta:
 		verbose_name = 'Категория'
 		verbose_name_plural = 'Категории'
+
 
 # работающий класс
 
@@ -50,6 +50,8 @@ class Actor(models.Model):
 	class Meta:
 		verbose_name = "Актёр"
 		verbose_name_plural = "Актёры"
+
+
 # работающий класс
 
 
@@ -66,6 +68,7 @@ class Direction(models.Model):
 		verbose_name = "Режисёры"
 		verbose_name_plural = "Режисёры"
 
+
 # работающий класс
 
 
@@ -80,6 +83,7 @@ class Genre(models.Model):
 	class Meta:
 		verbose_name = "Жанр"
 		verbose_name_plural = "Жанры"
+
 
 # работающий класс
 
@@ -106,7 +110,7 @@ class Movie(models.Model):
 		'Сборы в мире', default=0, help_text='указывать в долларах'
 	)
 
-	category = models.ForeignKey( # Foreign - отношение Многие к одному
+	category = models.ForeignKey(  # Foreign - отношение Многие к одному
 		# указываем модель катергории Category, обязательный аргумент on_delete=models.SET_NULL
 		# SET_NULL указывает что при удалении поле будет равно нулю
 		Category, verbose_name='Категория', on_delete=models.SET_NULL, null=True
@@ -123,6 +127,7 @@ class Movie(models.Model):
 		verbose_name = 'Фильм'
 		verbose_name_plural = 'Фильмы'
 
+
 # кадры из фильма
 
 
@@ -131,6 +136,7 @@ class MovieShots(models.Model):
 	description = models.TextField('Описание')
 	image = models.ImageField('Изображение', upload_to='movie_shots/')
 	movie = models.ForeignKey(Movie, verbose_name='Фильм', on_delete=models.CASCADE)
+
 	# CASCADE - при удалении всех фильмов кадры удаляться
 
 	def __str__(self):
@@ -139,6 +145,8 @@ class MovieShots(models.Model):
 	class Meta:
 		verbose_name = 'Кадр из фильма'
 		verbose_name_plural = 'Кадры из фильма'
+
+
 # звёзды рейтинга
 
 
@@ -152,6 +160,7 @@ class RatingStar(models.Model):
 		verbose_name = 'Звёзда рейтинга'
 		verbose_name_plural = 'Звёзды рейтинга'
 
+
 # Рейтинг
 
 
@@ -160,9 +169,6 @@ class Rating(models.Model):
 	star = models.ForeignKey(RatingStar, on_delete=models.CASCADE, verbose_name='звёзда')
 	movie = models.ForeignKey(Movie, on_delete=models.CharField, verbose_name='фильм')
 
-	def __str__(self):
-		return f"{self.star} - {self.movie}"
-
 	class Meta:
 		verbose_name = 'Рейтинг'
 		verbose_name_plural = 'Рейтинги'
@@ -170,7 +176,6 @@ class Rating(models.Model):
 
 # Отзывы
 class Reviews(models.Model):
-
 	email = models.EmailField()
 	name = models.CharField('Имя', max_length=100)
 	text = models.CharField('Сообщение', max_length=5000)

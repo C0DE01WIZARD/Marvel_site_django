@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+<head>
+    <title>Детали фильма</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_new.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700"
+          rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900"
+          rel="stylesheet">
+    <link rel = "shortcut icon" type="image/x-icon" href="{% static 'cap.png' %}">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- //Fonts -->
+</head>
+
+<body>
+
+<div id="page" class="page"><!-- mian-content -->
+    <div class="main-banner bg bg1" id="home"
+         style="background-color: rgba(255, 255, 255, 255); margin-top: 1px; background-image: url({% static 'aveng.jpg' %})"><br>
+        <!-- header -->
+        <header class="header"><div class="container-fluid px-lg-5">
+                <!-- nav -->
+
+            <nav class="py-4">
+                    <div id="logo">
+                        <h1><a href="error/" class="editContent"
+                               style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 49px; background-color: rgba(255, 0, 0, 0); font-family: &quot;Source Sans Pro&quot;, sans-serif;">Фильмы, сериалы и мультфильмы </a>
+                        </h1>
+
+                        <h1> MARVELS STUDIOS</h1>
+                    </div>
+        </header>
+    </div>
+</div>
+
+                        <div class="warning">
+                            <img src="{{ movie.poster.url }}" class="img-fluid" alt="center">
+                        </div>
+
+
+
+                        <div class="desc1-right col-md-6 pl-lg-4">
+                            <h6 class="editContent" style="outline: none; cursor: inherit;">
+                                {{ movie.title }}
+                            </h6>
+                            <h6 class="editContent"></h6>
+                            <ul>
+                                <li style="list-style: none">
+                                    <span><b>Год:</b> {{ movie.year }}</span></li>
+                                <li style="list-style: none">
+                                    <span><b>Страна:</b> {{ movie.country }}</span>
+                                </li>
+                                <li style="list-style: none">
+                                    <span><b>Слоган:</b> {{ movie.tagline }}</span>
+                                </li>
+                                <li style="list-style: none">
+                                    <span><b>Режиссер:</b>
+                                        {% for direction in movie.direction.all %}
+                                            {{ direction.name }}
+                                        {% endfor %}
+                                    </span>
+                                </li>
+                                <li style="list-style: none"><span><b>Актеры:</b>
+                                    {% for actor in movie.actors.all %}
+                                        {{ actor.name }}
+                                    {% endfor %}
+                                </span>
+                                </li>
+                                <li style="list-style: none"><span><b>Жанр:</b>
+                                    {% for genre in movie.genres.all %}
+                                        {{ genre.name }}
+                                    {% endfor %}
+                                    </span>
+                                </li>
+                                <li style="list-style: none"><span><b>Премьера в мире:</b> {{ movie.world_premiere }}</span>
+                                </li>
+                                <li style="list-style: none">
+                                    <span><b>Бюджет:</b> ${{ movie.budget }}</span></li>
+                                <li style="list-style: none">
+                                    <span><b>Сборы в США:</b> ${{ movie.fees_in_usa }}</span></li>
+                                <li style="list-style: none"><span><b>Сборы в мире:</b> ${{ movie.fess_in_world }}</span>
+                                </li>
+                                <li style="list-style: none">
+                                    <a href="1"><b>Рейтинг:</b>
+                                        <span class="fa fa-star" aria-hidden="true"
+                                              style="outline: none; cursor: inherit;"></span>
+                                        <span class="fa fa-star" aria-hidden="true"
+                                              style="outline: none; cursor: inherit;"></span>
+                                        <span class="fa fa-star" aria-hidden="true"
+                                              style="outline: none; cursor: inherit;"></span>
+                                        <span class="fa fa-star" aria-hidden="true"
+                                              style="outline: none; cursor: inherit;"></span>
+                                        <span class="fa fa-star" aria-hidden="true"
+                                              style="outline: none; cursor: inherit;"></span>
+                                        <span class="editContent"
+                                              style="outline: none; cursor: inherit;">5.0</span>
+                                    </a>
+                                </li>
+                                <div class="share-desc">
+                                    <div class="share">
+                                        <h4 class="editContent"
+                                            style="outline: none; cursor: inherit;">
+                                            Share:</h4>
+                                        <ul class="w3layouts_social_list list-unstyled">
+                                            <li>
+                                                <a href="#" class="w3pvt_facebook editContent"
+                                                   style="outline: none; cursor: inherit;">
+                                                <span class="fa fa-facebook-f"
+                                                      style="outline: none; cursor: inherit;"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="w3pvt_twitter editContent"
+                                                   style="outline: none; cursor: inherit;">
+                                                <span class="fa fa-twitter"
+                                                      style="outline: none; cursor: inherit;"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="w3pvt_dribble editContent"
+                                                   style="outline: none; cursor: inherit;">
+                                                <span class="fa fa-dribbble"
+                                                      style="outline: none; cursor: inherit;"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                    <div class="row sub-para-w3layouts mt-5">
+
+                        <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
+                            О фильме {{ movie.title }}
+                        </h3>
+                        <p>
+                            <img src="bundles/images/about.jpg" class="img-fluid" alt="">
+                            <img src="bundles/images/admin.jpg" class="img-fluid" alt="">
+                            <img src="bundles/images/d1.jpg" class="img-fluid" alt="">
+                        </p>
+                        <h5 class="editContent" style="outline: none; cursor: inherit;">
+                            {{ movie.description }}
+                        </h5>
+
+                            </iframe>
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                                <form action="#" method="get" class="mt-4">
+                                    <div class="form-group editContent"
+                                         style="outline: none; cursor: inherit;">
+                                        <label for="contactcomment" class="editContent"
+                                               style="outline: none; cursor: inherit;">Ваш
+                                            комментарий
+                                            *</label>
+                                        <textarea class="form-control border" rows="5"
+                                                  id="contactcomment" required=""></textarea>
+                                    </div>
+                                    <div class="d-sm-flex">
+                                        <div class="col-sm-6 form-group p-0 editContent"
+                                             style="outline: none; cursor: inherit;">
+                                            <label for="contactusername" class="editContent"
+                                                   style="outline: none; cursor: inherit;">Имя
+                                                *</label>
+                                            <input type="text" class="form-control border"
+                                                   id="contactusername" required="">
+                                        </div>
+                                        <div class="col-sm-6 form-group ml-sm-3 editContent"
+                                             style="outline: none; cursor: inherit;">
+                                            <label for="contactemail" class="editContent"
+                                                   style="outline: none; cursor: inherit;">Email
+                                                *</label>
+                                            <input type="email" class="form-control border"
+                                                   id="contactemail" required="">
+                                        </div>
+                                    </div>
+                                    <button type=""
+                                            class=""
+                                            style="outline: none; cursor: inherit;">Отправить
+                                    </button>
+                                </form>
+                            </div>
+                            <!--  //contact form grid ends here -->
+                        </div>
+                                <div class="media mt-5 editContent"
+                                     style="outline: none; cursor: inherit;">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //contact -->
+    <!-- footer -->
+   <footer class="editContent">
+        <div class="container">
+            <div class="row footer-top">
+                <div class="col-lg-4 footer-grid_section_w3layouts">
+                    <h2 class="logo-2 mb-lg-4 mb-3">
+                        <a href="/error" class="editContent">
+                                <span class="fa" aria-hidden="true">
+                                    Сайт для фанатов Марвел
+                                </span>
+                        </a>
+                    </h2>
+                    <h5 class="editContent">
+
+                    </h5>
+                    <h4 class="sub-con-fo ad-info my-4 editContent">Ищите нас в социальных сетях</h4>
+                    <ul class="w3layouts_social_list media-soc list-unstyled">
+                        <li>
+                            <a href="/error" class="w3pvt_facebook editContent">
+                                <span class="fa fa-facebook-f"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/error" class="w3pvt_twitter editContent">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/error" class="w3pvt_dribble editContent">
+                                <span class="fa fa-dribbble"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/error" class="w3pvt_google editContent">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-8 footer-right">
+                    <div class="w3layouts-news-letter">
+                        <h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3">
+                            Newsletter</h3>
+
+                        <p class="editContent">Подписавшись на нашу рассылку, вы всегда будете получать последние новости и обновления от нас.</p>
+                        <form action="#" method="post" class="w3layouts-newsletter">
+                            <input type="email" name="Email" class="editContent"
+                                   placeholder="Введите ваш email" required="">
+                            <button class="btn1 btn"><span class="fa fa-paper-plane-o"
+                                                           aria-hidden="true"></span></button>
+
+                        </form>
+                    </div>
+                    <div class="row mt-lg-4 bottom-w3layouts-sec-nav mx-0">
+                        <div class="col-md-4 footer-grid_section_w3layouts">
+                            <h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3">
+                                Разделы</h3>
+                            <ul class="list-unstyled w3layouts-icons">
+                                <li>
+                                    <a href="http://127.0.0.1:8000/movies" class="editContent">Главная</a>
+                                </li>
+                                <li>
+                                    <a href="http://127.0.0.1:8000/your-template.html" class="editContent">Категории</a>
+                                </li>
+                                <li>
+                                    <a href="http://127.0.0.1:8000/hello" class="editContent">Контакты</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 footer-grid_section_w3layouts">
+                            <!-- social icons -->
+                            <div class="agileinfo_social_icons">
+                                <h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3">
+                                    Страницы</h3>
+                                <ul class="list-unstyled w3layouts-icons">
+
+                                    <li>
+                                        <a href="#" class="editContent">About Us</a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <!-- social icons -->
+                        </div>
+
+                        <div class="col-md-4 footer-grid_section_w3layouts my-md-0 my-5">
+                            <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3 editContent">
+                                Контактная информация</h3>
+                            <div class="contact-info">
+                                <div class="footer-address-inf my-4">
+                                    <h4 class="ad-info mb-2 editContent">Email </h4>
+                                    <p class="editContent"><a href="mailto:info@example.com">usmanov-rushan@mail.ru</a>
+                                    </p>
+                                </div>
+                                <div class="footer-address-inf">
+                                    <h4 class="ad-info mb-2 editContent">Расположение</h4>
+                                    <p class="editContent">Россия</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    <div class="cpy-right py-3">
+        <div class="container">
+            <div class="row">
+                <p class="col-md-10 text-left">© 2022 Marvel Studios. Все права защищены |
+                    <a href="/error"> by Rushan Usmanov.</a>
+                </p>
+                <!-- move top icon -->
+                <a href="#home" class="move-top text-right col-md-2"><span
+                        class="fa fa-long-arrow-up" aria-hidden="true"></span></a>
+                <!-- //move top icon -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

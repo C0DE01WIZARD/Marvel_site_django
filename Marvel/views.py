@@ -8,10 +8,8 @@ def hello(request):
 
 
 def error(request):
-	return render(request, 'movies/your-template.html')
-	# your custom status in this case 204
+	return render(request, 'movies/error.html')
 
+	# your custom status in this case 404
 
-def index(request):
-	return render(request, 'movies/Index.html')
 

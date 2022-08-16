@@ -1,15 +1,15 @@
 html,
 body {
-    margin: 0;
+    margin: 50;
     font-size: 100%;
-    background: #;
-    font-family: 'Lato', sans-serif;
+    background: #ADC4FF;
+    font-family: 'Bradley Hand, cursive', sans-serif;
     scroll-behavior: smooth;
 }
 
 body a {
     text-decoration: none;
-    transition: 0.5s all;
+    transition: 9.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
@@ -18,6 +18,8 @@ body a {
 
 a:hover {
     text-decoration: none;
+
+
 }
 
 input[type="button"],
@@ -30,7 +32,7 @@ input[type="search"] {
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: '', sans-serif;
 }
 
 h1,
@@ -39,17 +41,20 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
+   color: black;
+    margin: 2;
     letter-spacing: 1px;
-    font-weight: 600;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 800;
+    font-family: '', sans-serif;
 }
 
 p {
-    font-size: 0.9em;
-    color: #8c9398;
-    line-height: 2em;
-    letter-spacing: 1px;
+
+    font-size: 5.5em;
+    color: black;
+    line-height: 1.5em;
+    letter-spacing: 5px;
+     font-family: 'Bookman, URW Bookman L',serif;
 }
 
 ul {
@@ -58,10 +63,11 @@ ul {
 }
 
 body img {
-    border-radius: 18px;
-    -webkit-border-radius: 4px;
-    -o-border-radius: 4px;
-    -moz-border-radius: 4px;
+    background-image: Perca.jpg
+    border-radius: 8px;
+    -webkit-border-radius: 78px;
+    -o-border-radius: 44px;
+    -moz-border-radius: 44px;
     -ms-border-radius: 4px;
 }
 
@@ -97,15 +103,15 @@ nav {
 
 
 #logo a {
-    float: left;
+    float: center;
     display: initial;
     margin: 0;
-    letter-spacing: 1px;
-    color: #fff;
-    font-size: 1em;
+    letter-spacing: 22px;
+    color: #red;
+    font-size: 5em;
     font-weight: 700;
     text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'URW Chancery L', sans-serif;
 }
 
 
@@ -147,7 +153,7 @@ nav ul li {
     padding-right: 0;
     padding: 10px 0;
     margin: 0px 1em;
-    color: #fff;
+    color: #e4e4e4;
     text-transform: uppercase;
     -webkit-transition: 0.5s all ease;
     -moz-transition: 0.5s all ease;
@@ -157,7 +163,7 @@ nav ul li {
 
 
 .menu li ul li a {
-    color: #555;
+    color: red;
     padding: 10px 10px;
     font-size: 0.8em;
 }
@@ -185,8 +191,8 @@ nav ul ul {
     position: absolute;
     /* has to be the same number as the "line-height" of "nav a" */
     top: 30px;
-    background: #fff;
-    padding: 10px;
+    background: #22221;
+    padding: 1px;
 }
 
 /* Display Dropdowns on Hover */
@@ -206,7 +212,7 @@ nav ul ul li {
 }
 
 nav ul ul li a {
-    color: #333;
+    color: red;
     padding: 5px 10px;
     display: block;
 }
@@ -383,7 +389,7 @@ li > a:only-child:after {
 /*--/banner --*/
 
 .main-banner {
-    background: url(../images/banner.jpg)no-repeat center;
+    background: url(static/Perca.jpg)no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -423,7 +429,7 @@ li > a:only-child:after {
 
 .banner-form :-moz-placeholder {
     /* Firefox 18- */
-    color: #ccc;
+    color: #A52A2A;
 }
 
 .banner-info {
@@ -433,14 +439,14 @@ li > a:only-child:after {
 
 .banner-info h3 {
     font-size: 3.5em;
-    letter-spacing: 2px;
-    color: #000;
+    letter-spacing: 45px;
+    color: #A52A2A;
     text-transform: uppercase;
     text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
 }
 
 .banner-info p {
-    color: #00000;
+    color: #A52A2A;
     font-size: 0.8em;
     letter-spacing: 2px;
     font-weight: 400;
@@ -474,13 +480,13 @@ li > a:only-child:after {
 
 .ban-buttons a.active,
 .ban-buttons a:hover {
-    opacity: 0.8;
+    opacity: 2.8;
 }
 
 a.btn.active {
     background: #10adfb;
-    color: #fff;
-    border: #10adfb;
+    color: #123;
+    border: #9adfb;
 }
 
 /*-- //place holder --*/
@@ -544,7 +550,7 @@ ul.events-icons.new-inf img {
 .bottom-gd,
 .bottom-gd2-active {
     background: #f8f9fa;
-    transition: 2s all;
+    transition: 9s all;
     -webkit-transition: 2s all;
     -moz-transition: 2s all;
     -ms-transition: 2s all;
@@ -555,7 +561,7 @@ ul.events-icons.new-inf img {
 
 .bottom-gd2-active {
     background: #ff4c4c;
-    transition: 2s all;
+    transition: 6s all;
     -webkit-transition: 2s all;
     -moz-transition: 2s all;
     -ms-transition: 2s all;
@@ -568,7 +574,7 @@ ul.events-icons.new-inf img {
 }
 
 .bottom-gd2-active p {
-    color: #fff;
+    color: #black;
 }
 
 .bottom-gd2-active h3 {
@@ -577,10 +583,10 @@ ul.events-icons.new-inf img {
 
 .feature-grids h3,
 .bottom-gd.fea h3 {
-    font-size: 0.9em;
+    font-size: 0.2em;
     color: #1e272e;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 100;
 }
 
 ul.tic-info li span {
@@ -801,7 +807,7 @@ li.breadcrumb-item {
 }
 
 .breadcrumb-item.active {
-    color: #888;
+    color: #448;
 }
 
 li.breadcrumb-item a {
@@ -1003,8 +1009,8 @@ form.w3layouts-newsletter {
 }
 
 .w3layouts-newsletter button.btn1 {
-    color: #ff4c4c;
-    font-size: 17px;
+    color: red;
+    font-size: 10px;
     letter-spacing: 1px;
     padding: 14px 0;
     border: transparent;
@@ -1021,7 +1027,7 @@ form.w3layouts-newsletter {
 
 h2.logo-2 a {
     font-weight: 700;
-    font-size: 34px;
+    font-size: 26px;
     color: #1c1d21;
     text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
     letter-spacing: 1px;
@@ -1350,7 +1356,7 @@ a.move-top span {
 
 /*** Responsive Menu For Smaller Device ***/
 
-@media screen and (max-width:900px) {
+@media only screen and (max-width:1200px) {
     .dropdown-menu {
         width: 100%;
     }
@@ -1560,3 +1566,26 @@ a.move-top span {
 @media(max-width:320px) {}
 
 /*--//responsive--*/
+.icon-bar {
+    width: 39%; /* Full-width */
+    background-color: #555; /* Dark-grey background */
+    overflow: auto; /* Overflow due to float */
+}
+
+.icon-bar a {
+    float: left; /* Float links side by side */
+    text-align: center; /* Center-align text */
+    width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
+    padding: 12px 0; /* Some top and bottom padding */
+    transition: all 0.3s ease; /* Add transition for hover effects */
+    color: white; /* White text color */
+    font-size: 23px; /* Increased font size */
+}
+
+.icon-bar a:hover {
+    background-color: #000; /* Add a hover color */
+}
+
+.active {
+    background-color: ; /* Add an active/current color */
+}

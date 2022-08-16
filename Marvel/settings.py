@@ -24,12 +24,13 @@ SECRET_KEY = 'django-insecure-*^3%n41!)e%^_jbhg_%mj0igd_!mwgm3#k1z=uo10%7*0_7!m*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # отладка проекта
 
-ALLOWED_HOSTS = []  # разрешенные хосты, домены
+ALLOWED_HOSTS = ['127.0.0.1']  # разрешенные хосты, домены
 
 # Application definition
 
 INSTALLED_APPS = [  # добавление приложения
 	'Marvels_Studio', # новое приложение
+	'rest_framework',
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
@@ -53,7 +54,7 @@ ROOT_URLCONF = 'Marvel.urls'
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
-		'DIRS': [],
+		'DIRS': [os.path.join(BASE_DIR, 'templates')], # путь для поиска шаблонов
 		'APP_DIRS': True,
 		'OPTIONS': {
 			'context_processors': [
@@ -101,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -111,9 +112,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
-STATIC_URL = '/static/' #какой URL будет у нашей статики
-STATIC_DIR = os.path.join(BASE_DIR, 'static') #директория нашей статики
-STATICFILES_DIRS = [STATIC_DIR]
+STATIC_URL = '/static/' # какой URL будет у нашей статики
+STATIC_DIR = os.path.join(BASE_DIR, 'static/') # директория нашей статики
+STATICFILES = (os.path.join(BASE_DIR, 'static/')),
+# спсиок из каких директорий собирать нашу статику
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # передать путь к директории media

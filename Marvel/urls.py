@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
+from django.conf import settings # импортируем из django.counf из settings
 from django.conf.urls.static import static
 from . import views
 
@@ -23,13 +23,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Marvels_Studio.urls')), # подключаем URL нашего приложения
     path('hello/', views.hello, name='hello'),
-    path('error/', views.error)
+    path('error/', views.error),
+    path('api-auth/', include('rest_framework.urls'))
 ]
 
 # Джанго будет раздавть медия при включенном DEBUG
 
 if settings.DEBUG: # если наш DEBUG включен, то
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # ДЖАНГО будет раздавть наши
+    # файлы при включенном Debug режиме
 
 
 # таким образом Django будет раздавать файлы при включенном Debug режиме

@@ -1,10 +1,10 @@
 from django.urls import path
-from .import views
+from . import views
 
 urlpatterns = [  # список url
-	path('', views.MoviesView.as_view()), #пустая так как главная страница
-	path('movies/', views.Movies),
-	path('<int:pk>/', views.MovieDetailViews.as_view()), # принимаем pk как число int
-	path('home/', views.Home.as_view(), name="Home"),
-	path('index/', views.Index.as_view())
+	path('', views.MoviesView.as_view()),  # пустая так как главная страница
+	#path('<slug:slug>/', views.Detail.as_view()),  # принимаем pk как число int
+	path('<int:pk>/', views.Detail.as_view()),  # принимаем pk как число int
+	path('base/', views.base.as_view(), name='base'),
+	path('reg/', views.reg, name='reg')
 ]
