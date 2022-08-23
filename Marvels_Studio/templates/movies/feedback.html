@@ -1,0 +1,25 @@
+{% extends "movies/about.html" %}
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     {% block title %}<title>Обратная связь</title> {% endblock %}
+    {% block header %}
+    <div class="main-banner bg bg1" id="home" style="background-color: rgba(255, 255, 255, 255); margin-top: 11px; background-image: url({% static 'aveng.jpg' %})">
+    <h3 align="center">Обратная связь</h3>
+<form class="feed" action="" method="post">
+    <input class="input" type="text" placeholder="Тема сообщения"><br>
+  <input class="input" type="text" placeholder="Ваше имя"><br>
+  <input class="input" type="email" placeholder="Ваш e-mail"><br>
+    <textarea id="comment" placeholder="Введите ваше сообщение"></textarea>
+  <button class="btn" type="submit">Написать нам</button><br>
+            </form>
+
+
+    {% endblock %}
+</head>
+<body>
+
+</body>
+</html>

@@ -190,4 +190,20 @@ class Reviews(models.Model):
 	class Meta:
 		verbose_name = 'Отзыв'
 		verbose_name_plural = 'Отзывы'
+
+
+class Articles(models.Model):
+	text = models.TextField("Содержание статьи")
+
+	def __str__(self):
+		return self.text
+
+	class Meta:
+		verbose_name = 'Статья'
+		verbose_name_plural = 'Статьи'
+
+
+
+
+
 # Create your models here.

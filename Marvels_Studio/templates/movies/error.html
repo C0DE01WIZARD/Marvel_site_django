@@ -1,31 +1,20 @@
-<!DOCTYPE html>
+{% extends "movies/about.html" %}
 {% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ошибка</title>
+    {% block header %}
+    {% block title %}<title>Ошибка</title>{% endblock %}
 </head>
-<body>
+<body><br>
 
+<link rel="stylesheet" href="{% static 'css/test.css' %}">
+<h3 align="center">Запрошенная страница не найдена, но будет доступна в будущем</h3>
+<h1 align="center">404 NOT FOUND</h1>
+<!--<video width="1560" height="980" controls autoplay src="{% static 'tanos.mp4' %}"></video> -->
+<a href="/about"><li><i class="fas fa-home"> </i> Вернуться на главную страницу </li></a>
 
-
-
-<h3 align="center">Запрошенная страница не найдена, но может быть снова доступна в будущем</h3><br>
-
-<h1 align="center">404 Not Found</h1>
-<video width="1560" height="980" controls autoplay src="{% static 'tanos.mp4' %}"></video>
-<a href="/"><li><i class="fas fa-home"> </i> Вернуться на главную страницу </li></a>
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <!-- Bootstrap-Core-CSS -->
-    <!--/ Style-CSS -->
-<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
-
-    <!--// Style-CSS -->
-    <!-- font-awesome-icons -->
-    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
-
+ {% endblock %}
 
 </body>
 </html>

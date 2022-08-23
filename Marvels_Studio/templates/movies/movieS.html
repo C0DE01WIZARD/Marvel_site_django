@@ -1,0 +1,73 @@
+{% extends "movies/about.html" %}
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Наши кинофильмы</title>{% endblock %}
+    {% block header %}
+<h1 align="center">Наши кинофильмы</h1>
+    <div id="movie1">
+            <div id="movie">
+         <div class="left-ads-display col-lg-9">
+                    <div class="row">
+                        {% for movies in movie_list %}
+
+                            <div class="col-md-4 product-men">
+                                <div class="product-shoe-info editContent text-center mt-lg-4">
+                                    <div class="men-thumb-item">
+                                        <img src="{{ movies.poster.url }}" id="movies" alt="">
+
+                                    </div>
+                                    <div>
+                                        <h4 class="">
+                                            <a href="/{{ movie.url}}/">
+                                                <h4>{{ movies.title }}</h4></a>
+                                             <h4>Страна:   {{ movies.country}}
+                                        </h4>
+
+                                            <div class="product_price">
+                                            <div class="grid-price">
+                                                <h3><span class="money editContent">{{ movies.year }} г. </span></h3>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="product_price">
+                                            <div class="grid-price">
+                                                <span class="money editContent">Слоган: {{ movies.tagline }}</span>
+                                            </div>
+
+
+
+                                            <div class="grid-price">
+
+                                            </div>
+                                        </div>
+                                       <style>
+                                        h6 {
+                                        color: black;
+                                        }
+                                        </style>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+
+
+
+                </div>
+            </div>
+        </div><br>
+        {% endblock %}
+
+
+ </div>
+
+</head>
+<body>
+
+</body>
+</html>

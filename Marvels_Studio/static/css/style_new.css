@@ -20,7 +20,7 @@
     color: white;
 }
 
-/*РЕГИСТРАЦИЯ */
+
 
 body {
   font-family: Arial, sans-serif;
@@ -31,59 +31,5 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-.form {
-  max-width: 620px;
-  padding: 15px;
-  margin: 20px auto;
-  background-color: #fff;
-}
-
-.input {
-  display: block;
-  width: 100%;
-  padding: 10px 26px;
-  margin-bottom: 10px;
-
-  border: 2px solid #ccc;
-
-  font-family: inherit;
-  font-size: 16px;
-}
-
-.btn {
-  display: block;
-  width: 100%;
-  padding: 8px 10px;
-
-  border: 4;
-  background-color: #1cbc11;
-  cursor: pointer;
-
-  font-family: inherit;
-  font-size: 160px;
-  color: #fff;
-}
-
-.btn:hover {
-  background-color: #14a20a;
-}
-
-.warning {
-    border: 12px ridge white;
-    background-color:;
-    padding: .5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.warning img {
-    width: 30%;
-}
-
-.warning p {
-    font: small-caps bold 1.2rem sans-serif;
-    text-align: center;
 }
 

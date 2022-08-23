@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from http import HTTPStatus
 from django.shortcuts import render
+from django.http import HttpResponse
 
 
 def hello(request):

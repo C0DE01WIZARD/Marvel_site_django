@@ -27,7 +27,7 @@
 
 <div id="page" class="page"><!-- mian-content -->
     <div class="main-banner bg bg1" id="home"
-         style="background-color: rgba(255, 255, 255, 255); margin-top: 11px; background-image: url({% static 'aven.jpg' %})">
+         style="background-color: rgba(255, 255, 255, 255); margin-top: 11px; background-image: url({% static 'aveng.jpg' %})">
 
         <!-- header -->
         <header class="header" ><div class="container-fluid px-lg-5" >
@@ -69,7 +69,7 @@
 
 
 <div class="city">
-    <label for="uname"><b> Логин*</b></label>
+    <label for="uname"> <b> Логин*</b></label>
     <input type="text" placeholder="Введите логин" name="uname" required><br>
 
     <label for="psw"><b> Пароль</b></label>
@@ -106,7 +106,7 @@
 
         <div class="banner-info"><br>
             <p class="editContent">Сайт киновселенной MARVEL STUDIOS</p><br>
-            <!--<a href="/error"><img src="{% static 'kamni.jpg'%}"align='left' alt="Главное описание" width="1200" height="290" border="0"><br>-->
+            <a href="/error"><img src="{% static 'kamni.jpg'%}"align='left' alt="Главное описание" width="1200" height="290" border="0"><br>
                     <a href="/error"><img src="{% static 'Perca.jpg'%}"align='right' alt="Главное описание" width="150" height="150" border="19"><br>
 
                         <style>
@@ -186,31 +186,29 @@
                 <!-- product right -->
                 <div class="left-ads-display col-lg-9">
                     <div class="row">
-                        {% for movie in movie_list %}
+                        {% for movies in movie_list %}
 
                             <div class="col-md-4 product-men">
                                 <div class="product-shoe-info editContent text-center mt-lg-4">
                                     <div class="men-thumb-item">
-                                        <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
+                                        <img src="{{ movies.poster.url }}" class="img-fluid" alt="">
 
                                     </div>
                                     <div class="item-info-product">
                                         <h4 class="">
                                             <a href="/{{ movie.url}}/" class="editContent">
-                                                {{ movie.title }} <br>
-                                             Страна:   {{ movie.country}}
-
-                                            </a>
+                                                {{ movies.title }} <br>
+                                             Страна:   {{ movies.country}}</a>
                                         </h4>
 
                                         <div class="product_price">
                                             <div class="grid-price">
-                                                <span class="money editContent">Слоган: {{ movie.tagline }}</span>
+                                                <span class="money editContent">Слоган: {{ movies.tagline }}</span>
                                             </div>
 
                                         <div class="product_price">
                                             <div class="grid-price">
-                                                <span class="money editContent">{{ movie.year }} г. </span>
+                                                <span class="money editContent">{{ movies.year }} г. </span>
                                             </div>
                                         </div>
 
