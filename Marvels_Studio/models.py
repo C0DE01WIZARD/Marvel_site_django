@@ -1,11 +1,8 @@
+from django.urls import reverse
 from django.db import models
 from datetime import date
 
-
-# Create your models here.
-
 # пишем модели
-
 
 class Famous_actors(models.Model):
 	name = models.TextField("Имя актёра", max_length=20)
@@ -115,7 +112,7 @@ class Movie(models.Model):
 		# SET_NULL указывает что при удалении поле будет равно нулю
 		Category, verbose_name='Категория', on_delete=models.SET_NULL, null=True
 	)
-
+	#time_create = models.DateTimeField(auto_now_add=True)
 	url = models.SlugField(max_length=130, unique=True)
 	# draft - черновик
 	draft = models.BooleanField('Черновик', default=False)
@@ -123,9 +120,14 @@ class Movie(models.Model):
 	def __str__(self):
 		return self.title
 
+	def get_absolute_url(self):
+		return reverse("detail", kwargs={"slug": self.url})
+
+
 	class Meta:
 		verbose_name = 'Фильм'
 		verbose_name_plural = 'Фильмы'
+		#ordering = ['time_create', 'title']
 
 
 # кадры из фильма
@@ -154,7 +156,7 @@ class RatingStar(models.Model):
 	value = models.SmallIntegerField('Значение,', default=0)
 
 	def __str__(self):
-		return self.value
+		return f'{self.value}'
 
 	class Meta:
 		verbose_name = 'Звёзда рейтинга'
@@ -172,6 +174,9 @@ class Rating(models.Model):
 	class Meta:
 		verbose_name = 'Рейтинг'
 		verbose_name_plural = 'Рейтинги'
+
+	def __str__(self):
+		return f'{self.movie}'
 
 
 # Отзывы

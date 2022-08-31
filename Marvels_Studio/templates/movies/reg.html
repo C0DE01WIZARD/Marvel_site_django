@@ -1,15 +1,13 @@
 {% extends "movies/about.html" %}
 {% load static %}
-
 {% block title %}<title>Регистрация</title> {% endblock %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     {% block header %}
      <div id="page" class="page"><!-- mian-content -->
-
          <div class="main-banner bg bg1" id="home" style="background-color: rgba(255, 255, 255, 255); margin-top: 11px; background-image: url({% static 'aveng.jpg' %})">
-    <h3 align="center">Регистрация</h3>
+             <h3 align="center">Регистрация</h3>
             <form class="form" action="" method="post">
   <input class="input" type="text" placeholder="Ваше имя"><br>
   <input class="input" type="email" placeholder="Ваш e-mail"><br>
@@ -18,11 +16,7 @@
   <input class="input" type="password" placeholder="Пароль еще раз"><br>
   <button class="btn" type="submit">Регистрация</button><br>
             </form>
-
-
     {% endblock %}
 </head>
-<body>
 
-</body>
 </html>

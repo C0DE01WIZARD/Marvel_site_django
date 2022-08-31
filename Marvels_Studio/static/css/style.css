@@ -23,15 +23,25 @@ color:black;
 float: center;
 }
 
+/*********************************************FOOTER, HEADER//////////////////////////////////////////**/
 header, footer {
-    border-radius: 33px;
-    width: 98%; /*на весь экран*/
+    border-radius: 10px;
+    border:2px solid black;
+    width: 99%; /*на весь экран*/
     background-color:#38aafcdc; /* фон */
     min-height: 96px; /*50 пикселей */
     float: left;
     margin-top: 10px;
 
 }
+
+#but-search{
+    border-radius:9px;}
+
+#but-search:hover{
+    background-color: #8DFFFD;
+    font-size:12px;
+    }
 
 header a{
 margin-left:15px;
@@ -125,6 +135,7 @@ footer, #page-wrap{height:10px}
 
     }
 
+/*///////////////////////////////////О НАС////////////////////////////////////////////////////////////////**/
 
 
 #Nas {
@@ -139,7 +150,7 @@ Nas:hover {
     color:white;
 }
 
-
+/*/////////////////////////////////ГЛАВНАЯ СТРАНИЦА////////////////////////////////////////////////////*/
 #page-wrap: after{
     content='';
     display: block;
@@ -428,7 +439,7 @@ input[type=text].field{
   max-width: 620px;
   padding: 15px;
   margin: 20px auto;
-  background: url("/static/single-post-pic.jp") repeat-x center 0;
+  center 0;
   border-radius:12px;
 }
 
@@ -445,7 +456,7 @@ input[type=text].field{
 
 .btn {
   display: block;
-  width: 100%;
+  width: 109%;
   padding: 8px 10px;
   background-color: #38aafcdc;
   border: 44px;
@@ -466,14 +477,14 @@ input[type=text].field{
   max-width: 620px;
   padding: 15px;
   margin: 20px auto;
-  background: url("/static/single-post-pic.jp") repeat-x center 0;
   border-radius:12px;
 }
 #comment{
     color:black;
-    width:100%;
+    width:670px;
     border-radius:12px;
     height:100px;
+
 
 }
 
@@ -562,8 +573,11 @@ body {font-family: Verdana, sans-serif;}
 }
 
 
-#movie {
-    width:190%;
+#movie1 {
+    width:100%;
+    }
+
+
 
 
 }
@@ -590,3 +604,98 @@ body {font-family: Verdana, sans-serif;}
     background: red;
 }
 
+/*////////////////////////////////////////////////ДЕТАЛИ ФИЛЬМА///////////////////////////////////////////**/
+.detail_div{
+    float:left;
+
+}
+
+#descriptions{
+    float:left;
+
+}
+
+.detail_div img{
+    width: 90%;
+    border-radius: 15px;
+    float: center;
+
+}
+
+
+.img-detail{
+    width: 10%;
+    border-radius: 15px;
+    float: center;
+}
+
+.img-fluid {
+  max-width: 15%;
+  height: auto;
+  border-radius: 12px;
+  float: left;
+  margin-top:26px;
+}
+
+#label{
+    font-size: 14px;
+    margin-left: 22px;
+}
+
+#comment2 {
+    color:black;
+    width:400px;
+    border-radius:12px;
+    height:100px;
+    margin-left: 16px;
+}
+
+#label_detail{
+    margin-left:10px;
+    float:center;
+}
+
+#detail_button{
+    margin-left: 30px;
+}
+
+/*///////////////////////////////////////////НОВОСТИ///////////////////////////////////////////////////*/
+
+#kamni-news{
+    width:99%;
+    border-radius:19px;
+    }
+
+
+
+/*////////////////////////////////////////КИНОФИЛЬМЫ///////////////////////////////////////////////////*/
+
+.row {
+  margin-top: 39px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-bottom: 19px;
+}
+
+.col-md-4 {
+  width: 100%;
+  min-height: 1px;
+  padding-left: 90px;
+}
+
+.col-md-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 20.333333%;
+    max-width: 15.333333%;
+}
+
+
+.col-md-4 a {
+    color:black;
+    border-radius:19px;
+}

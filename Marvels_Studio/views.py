@@ -1,26 +1,17 @@
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from Marvels_Studio.views import *
 from django.views.generic.base import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView,TemplateView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import generics # импортируем для представления DRF
 from .models import Movie #
 from .models import Actor
 from .serializers import MovieSerializer # REST API
-from django.views import View
+from Marvels_Studio.models import *
 
 
-def reg(request):
-	return render(request, 'movies/regis.html')
-
-
-class base(View):
-	def get(self, request):
-		actor = Actor.objects.all()
-		return render(request, 'movies/base.html', {'actor_list': actor})
-
-
-class MoviesView(View):  # создаём класс MoviesView и наследуемся от класса Django (Views)
+class Movies(View):  # создаём класс MoviesView и наследуемся от класса Django (Views)
 	def get(self, request):  # создаём метод get которая будет приниать запросы http
 		# request - присланная информация от нашего клиента, принимает запросы от браузера
 		movies = Movie.objects.all() # с помощью менеджера objects забираем всю информацию
@@ -29,16 +20,24 @@ class MoviesView(View):  # создаём класс MoviesView и наслед�
 
 
 class Detail(View): # создаём класс Detail и наследуемся от класса Django (Views)
-	def get(self, request, pk):  # принимаем get запрос, на который передаётся requset и pk, сюда придёт ID
+	def get(self, request, slug):  # принимаем get запрос, на который передаётся requset и pk, сюда придёт ID
 		# pk некое число которое передаём из URL
-		movie = Movie.objects.get(id=pk)  # делаем запрос в БД через модель мовие, метод get который
+		movie = Movie.objects.get(url=slug)  # делаем запрос в БД через модель мовие, метод get который
 		# получает одну запись и id нашей записи сравнваем с пришедшим PK
 		# в Django id определяется как Pk
-		return render(request, "movies/detail.html", {"movie": movie})
-
-#Поиск фильмов
+		return render(request, "movies/detail.html", {"movies": movie})
 
 
+#def Movies(request, movieid):
+	#return HttpResponse(f'<h1> Статьи </h1><p> {movieid}</p>')
+
+
+class About(View):
+	def get(self, request):
+		movie2 = Movie.objects.all()
+		return render(request, "movies/about.html", {"movie": movie2})
+
+# Поиск фильмов
 class Search(ListView):
 	paginate_by = 3 #Будем выводить по три фильма
 
@@ -56,8 +55,7 @@ class MovieAPI(generics.ListAPIView):
 	serializer_class = MovieSerializer
 
 
-class AboutView(TemplateView):
-	template_name = "movies/about.html"
+
 
 
 class AboutUsView(TemplateView):
@@ -77,12 +75,15 @@ class AboutDateView(TemplateView):
 
 
 class AboutPagiView(TemplateView):
-	template_name = "movies/pagination.html"
+	template_name = "movies/pagi.html"
 
 
-class AboutMoviesView(TemplateView):
-	template_name = "movies/movieS.html"
+
 
 
 class AboutListView(TemplateView):
 	template_name = "movies/list.html"
+
+
+class News(TemplateView):
+	template_name = "movies/news.html"

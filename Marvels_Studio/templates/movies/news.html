@@ -1,0 +1,12 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %}<title>Новости</title>{% endblock %}
+</head>
+<body>
+ {% block header %}
+<h3 align="center">Новости</h3>
+<p align="center">Новостей пока нет, но мы над этим рабоаем</p>
+ <img src="{% static 'kamni.jpg'%}" id="kamni-news">
+ {% endblock %}
+</body>
+</html>

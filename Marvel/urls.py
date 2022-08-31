@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+
 from django.urls import path, include
 from django.conf import settings # импортируем из django.counf из settings
 from django.conf.urls.static import static
@@ -25,11 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Marvels_Studio.urls')), # подключаем URL нашего приложения
     path('hello/', views.hello, name='hello'),
-    path('error/', views.error),
+    path('error/', views.error, name='error'),
     path('api/v1/MovieAPI/', MovieAPI.as_view())
 ]
 
 # Джанго будет раздавть медия при включенном DEBUG
+handler404 = "Marvel.views.page_not_found_view"
 
 if settings.DEBUG: # если наш DEBUG включен, то
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # ДЖАНГО будет раздавть наши

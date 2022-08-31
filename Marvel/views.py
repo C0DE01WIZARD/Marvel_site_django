@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from http import HTTPStatus
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import Http404
 
 
 def hello(request):
@@ -9,8 +10,9 @@ def hello(request):
 
 
 def error(request):
-	return render(request, 'movies/error.html')
+	return render(request, 'movies/404.html')
 
-	# your custom status in this case 404
 
+def page_not_found_view(request, exception):
+	return render(request, 'movies/404.html', status=404)
 

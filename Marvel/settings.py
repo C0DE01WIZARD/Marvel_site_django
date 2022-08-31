@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['127.0.0.1']  # разрешенные хосты, домены
 
 INSTALLED_APPS = [  # добавление приложения
 	'Marvels_Studio', # новое приложение
-	'rest_framework',
+	'rest_framework', # новое API
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
