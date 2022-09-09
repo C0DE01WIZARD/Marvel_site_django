@@ -61,7 +61,7 @@ a{ /*цвет ссылок*/
 }
 
 a:hover { /*цвет при наведении*/
-    color: white; /*цвет ссылок*/
+    color: black; /*цвет ссылок*/
     text-decoration: none; /* текст без подчеркивания*/
     transition: all.6s ease;
     -moz-transition: all.6s ease;
@@ -376,10 +376,29 @@ margin-left:1160px;
 border: 8px;
 }
 
+#vk img:hover{
+border:2px solid black;
+width:2.3%;
+margin-top:-55px;
+float: right;
+margin-left:1160px;
+border: 8px;
+}
 
 
 #insta img{
 width: 2%;
+margin-top:-10px;
+float: right;
+margin-left:1160px;
+border-radius:5px;
+
+}
+
+#insta img:hover{
+
+border:2px solid black;
+width: 2.3%;
 margin-top:-10px;
 float: right;
 margin-left:1160px;
@@ -708,6 +727,29 @@ body {font-family: Verdana, sans-serif;}
     color:black;
     border-radius:19px;
 }
+
+#pagination{
+    font-size:18px;
+    display: inline-block;
+	width: 50px;
+	height: 34px;
+	padding: 16px 0 0 0;
+	border: 1px solid #d0d0d0;
+	border-radius: 30px;
+
+}
+
+#pagination:hover{
+    font-size:24px;
+    background-color: #87CEEB;
+    display: inline-block;
+	width: 50px;
+	height: 34px;
+	padding: 16px 0 0 0;
+	border: 1px solid #d0d0d0;
+	border-radius: 32px;
+}
+
 /**************************************ДОБАВИТЬ////////////////////////////////////////////////////////*/
 #menu7 a{
     border:3px solid black;

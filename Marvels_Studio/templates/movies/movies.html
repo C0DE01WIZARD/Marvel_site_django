@@ -5,22 +5,45 @@
     {% block title %}<title>Наши кинофильмы</title>{% endblock %}
     {% block header %}
 <h3 align="center">Наши кинофильмы</h3>
+      <!--pagination-->
+            <nav>
+                <ul>
+                    {% for p in page_obj.paginator.page_range %} <!--                 -->
+
+                        <a href="?page={{p}}" id="pagination">{{p}} </a>
+
+                    {% endfor %}
+                </ul>
+
+            </nav>
     <div id="movie">
         <div class="row">
-            {% for movies in movie_list %}
+            {% for movie in page_obj %}
             <div class="col-md-4 product-men">
-                <img src="{{ movies.poster.url }}" id="movies">
+                <img src="{{ movie.poster.url }}" id="movies">
                 <div>
-                    <a href="/" class="editContent">{{ movies.title }}</a>
-                    <h4>Страна:   {{ movies.country}}</h4>
-                        <h3><span>{{ movies.year }} г. </span></h3>
-                        <span>Слоган: {{ movies.tagline }}</span>
+                    <a href="/" class="editContent">{{ movie.title }}</a>
+                    <h4>Страна:   {{ movie.country}}</h4>
+                        <h3><span>{{ movie.year }} г. </span></h3>
+                        <span>Слоган: {{ movie.tagline }}</span>
                 </div>
             </div>
             {% endfor %}
+
         </div>
     </div>
     </div>
+      <!--pagination-->
+            <nav>
+                <ul>
+                    {% for p in page_obj.paginator.page_range %} <!--                 -->
+
+                        <a href="?page={{p}}" id="pagination">{{p}} </a>
+
+                    {% endfor %}
+                </ul>
+
+            </nav>
         {% endblock %}
  </div>
 </head>

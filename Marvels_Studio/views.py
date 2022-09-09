@@ -1,20 +1,18 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse
-from django.shortcuts import render
+
+
 from django.urls import reverse_lazy
 from rest_framework.response import Response
 from Marvels_Studio.views import *
 from django.views.generic.base import View
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
-from rest_framework.viewsets import ModelViewSet
-from rest_framework import generics # импортируем для представления DRF
 from django.views.generic.detail import DataMixin
 from .forms import * # импорт формы из forms.py
-from .models import Movie
-from .models import Actor
-from .serializers import MovieSerializer # REST API
 from Marvels_Studio.models import *
 from rest_framework.views import APIView
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # повторить материал https://www.youtube.com/watch?v=u37FXeVQIpU&list=PLA0M1Bcd0w8xO_39zZll2u1lz_Q-Mwn1F&index=13
 def add(request): # форма
@@ -24,16 +22,25 @@ def add(request): # форма
 			print(form.cleaned_data, 'Данные переданы через POST запрос!!!')
 	else:
 		form = FormAdd()
-	return render(request, 'movies/+.html', {'form': form})
-	# 'form' присваем значение переменной form
+	return render(request, 'movies/+.html', {'form': form})# 'form' присваем значение переменной form
 
 
-class Movies(View):  # создаём класс MoviesView и наследуемся от класса Django (Views)
-	def get(self, request):  # создаём метод get которая будет приниать запросы http
-		# request - присланная информация от нашего клиента, принимает запросы от браузера
-		movies = Movie.objects.all() # с помощью менеджера objects забираем всю информацию
-		return render(request, 'movies/movies.html', {'movie_list': movies})  # ключ словарь, записи
-# наших фильмов
+# class Movies(DataMixin, ListView):  # создаём класс MoviesView и наследуемся от класса Django (Views)
+# 	def get(self, request):  # создаём метод get которая будет приниать запросы http
+# 		# request - присланная информация от нашего клиента, принимает запросы от браузера
+# 		movies = Movie.objects.all() # с помощью менеджера objects забираем всю информацию
+# 		return render(request, 'movies/movies.html', {'movie_list': movies})  # ключ словарь, записи
+# # наших фильмов
+
+
+def Movies(request):
+	contact_list = Movie.objects.all()
+	paginator = Paginator(contact_list, 1)
+
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+	return render(request, 'movies/movies.html', {'page_obj': page_obj} )
+
 
 
 class Detail(View): # создаём класс Detail и наследуемся от класса Django (Views)
@@ -55,16 +62,8 @@ class About(View):
 		return render(request, "movies/about.html", {"movie": movie2})
 
 # Поиск фильмов
-class Search(ListView):
-	paginate_by = 3 #Будем выводить по три фильма
 
-	def get_queryset(self): #метод фильтрации по полю title__icontains чтоб не учитывался регистр
-		return Movie.objects.filter(title__icontains=self.request.GET.get("q")) # сравниваем данные которые пришли в GET запросе
-
-	def get_context_data(self, *args, **kwargs):
-		context = super().get_context_data(*args, **kwargs)
-		context ["q"]=self.request.GET.get("q")
-		return context
+# class Search(ListView):
 
 
 #class MovieAPI(generics.ListAPIView):
@@ -93,10 +92,15 @@ class AboutRegView(TemplateView):
 	template_name = "movies/reg.html"
 
 
-class Auth(DataMixin, CreateView):
-	form_class = UserCreationForm
-	template_name = "movies/auth.html"
-	success_url = reverse_lazy('login')
+class Register(DataMixin, CreateView):
+	form_class = UserCreationForm # стандартная форма для регистрации пользователей
+	template_name = "movies/auth.html" # ссылка на шаблон
+	success_url = reverse_lazy('login') # перенаправление при успешной авторизации
+
+	# def get_context_data(self, *, object_list=None, **kwargs):
+	# 	context = super().get_context_data(**kwargs)
+	# 	c_def = self.get_user_context(title="Регистрация")
+	# 	return dict(list(context.items()) + list(c_def.items()))
 
 
 class AboutFeedView(TemplateView):
