@@ -1,5 +1,5 @@
 from django.contrib import admin
-from.models import Category, Genre, Actor, Movie, MovieShots, Rating, RatingStar, Reviews, Direction, Famous_actors, Articles
+from.models import Category, Genre, Actor, Movie, MovieShots, Rating, RatingStar, Reviews, Direction, Famous_actors, Articles, Info
 
 # Register your models here.
 # Регистрируем все наши модели в административной панели Django
@@ -26,4 +26,5 @@ admin.site.register(RatingStar)
 admin.site.register(Reviews)
 admin.site.register(Direction)
 admin.site.register(Articles)
+admin.site.register(Info)
 # Register your models here.

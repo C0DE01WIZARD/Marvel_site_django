@@ -1,0 +1,21 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %}<title>Вход</title> {% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block header %}
+     <div id="page" class="page"><!-- mian-content -->
+         <div class="main-banner bg bg1" id="home" style="background-color: rgba(255, 255, 255, 255); margin-top: 11px; background-image: url({% static 'aveng.jpg' %})">
+             <h3 align="center">Вход</h3>
+             <form class="form" action="" method="post">
+                 <input class="input" type="email" placeholder="Ваш e-mail"><br>
+                 <input class="input" type="password" placeholder="Пароль"><br>
+                 <span><h5>Забыли</h5><a href="" title="Забыли пароль">пароль</a> </span>
+                 <button class="btn" type="submit">Войти</button><br>
+                 <button class="btn" type="submit">Регистрация</button><br>
+
+            </form>
+    {% endblock %}
+</head>
+</html>

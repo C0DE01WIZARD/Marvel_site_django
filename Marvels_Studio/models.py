@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.db import models
 from datetime import date
 
+
 # пишем модели
 
 class Famous_actors(models.Model):
@@ -112,10 +113,12 @@ class Movie(models.Model):
 		# SET_NULL указывает что при удалении поле будет равно нулю
 		Category, verbose_name='Категория', on_delete=models.SET_NULL, null=True
 	)
-	#time_create = models.DateTimeField(auto_now_add=True)
+	# time_create = models.DateTimeField(auto_now_add=True)
 	url = models.SlugField(max_length=130, unique=True)
 	# draft - черновик
 	draft = models.BooleanField('Черновик', default=False)
+	time_create = models.DateTimeField(auto_now_add=True, null=True)
+	is_published = models.BooleanField(default=True)
 
 	def __str__(self):
 		return self.title
@@ -123,11 +126,12 @@ class Movie(models.Model):
 	def get_absolute_url(self):
 		return reverse("detail", kwargs={"slug": self.url})
 
-
 	class Meta:
 		verbose_name = 'Фильм'
 		verbose_name_plural = 'Фильмы'
-		#ordering = ['time_create', 'title']
+
+
+# ordering = ['time_create', 'title']
 
 
 # кадры из фильма
@@ -198,6 +202,7 @@ class Reviews(models.Model):
 
 
 class Articles(models.Model):
+	name = models.TextField("Название статьи")
 	text = models.TextField("Содержание статьи")
 
 	def __str__(self):
@@ -208,7 +213,15 @@ class Articles(models.Model):
 		verbose_name_plural = 'Статьи'
 
 
+class Info(models.Model):
+	textinfo = models.TextField("Информация о нас")
+	date_create = models.DateTimeField("Дата публикации")
+	published = models.BooleanField(unique=True)
 
+	def __str__(self):
+		return f'{self.textinfo}'
 
-
+	class Meta:
+		verbose_name='О нас'
+		verbose_name_plural = 'О нас'
 # Create your models here.

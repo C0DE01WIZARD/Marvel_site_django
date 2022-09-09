@@ -406,6 +406,9 @@ input[type=text].field{
 /*////////////////////////////////СТРАНИЧКА О НАС////////////////////////////////////////////////////*/
 
 
+
+
+
 .about_us p{
     color: black;
     font-family: Arial, sans-serif;
@@ -430,7 +433,13 @@ input[type=text].field{
     border: 2px solid black;
     padding: 10px;
     border-radius:5px;
+}
 
+.Sten{
+    width:15%;
+    margin-left:60px;
+    border: 2px solid black;
+    border-radius: 12px;
 }
 
 
@@ -698,4 +707,18 @@ body {font-family: Verdana, sans-serif;}
 .col-md-4 a {
     color:black;
     border-radius:19px;
+}
+/**************************************ДОБАВИТЬ////////////////////////////////////////////////////////*/
+#menu7 a{
+    border:3px solid black;
+    border-radius:12px;
+}
+
+#add{
+    margin-top:10px;
+    margin-left:10px;
+    float:center;
+    width:30%;
+    border:2px solid black;
+    border-radius:9px;
 }

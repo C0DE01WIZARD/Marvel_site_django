@@ -32,8 +32,8 @@
     </form></a>
 
     <span class="right"> <span class="contact"><a href='/reg' title="Зарегистрироваться">Регистрация</a>
-        <span class="contact"><a href="{% url 'error' %}" title="Введите ваш логин и пароль">Вход</a>
-            <span class="date"><a href='/date' title="Ваш календарь событий" <img src="{% static 'icon.png' %} ">Календарь NEW</a>
+        <span class="contact"><a href="{% url 'auth' %}" title="Введите ваш логин и пароль">Вход</a>
+            <span class="date"><a href='/admin' title="Админ" <img src="{% static 'icon.png' %} ">Админка</a>
 
 </header>
 
@@ -48,6 +48,7 @@
             <a href="/list" id="menu4">Киновеселенная по порядку</a>
             <a href="/movie" id="menu5">Кинофильмы</a>
             <a href="/feed" id="menu6">Обратная связь</a>
+            <a href="/add" id="menu7">+</a>
         </div>
 
     </center><br>
@@ -63,13 +64,12 @@
             <a href="/">Показать полностью </a>
             </article>
             <article>
-                   <div class="left-ads-display col-lg-9">
-                    <div class="row">
+                   <h5 id="menu1" align="center">Скоро здесь будут новости</h5>
             </article>
 
             <article>
-                    <img src="{% static 'dir.jpg' %}">
-                <h6>Губейдуллина Ляйля Надировна вступила в должность Коммерчерского директора компании ООО "Вертолёт", пожелаем ей удачи на новом месте.<h6>
+                <h5 id="menu1" align="center">Скоро здесь будет вакантный блог</h5>
+
             </article>
         </div>
 <div class="clear"><br>

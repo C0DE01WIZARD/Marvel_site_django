@@ -1,0 +1,16 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %}<title>Добавить</title>{% endblock %}
+{% block header %}
+<div id="add">
+<h3 align="center">{{ post }}</h3>
+<p align="center">Добавить форму</p>
+<form action="{% url 'add' %}" method="post"> <!-- url '' означает к какой форме мы должны обратиться -->
+    {% csrf_token %} <!-- Защита от csrf атак, дублирующих сайтов, сопоставлением токенов -->
+    {{ form.as_p }} <!-- Позволяет отображать все поля формы через тег абзац -->
+
+    <button type="submit">Добавить</button>
+</form>
+</div>
+{% endblock %}
+</html>
