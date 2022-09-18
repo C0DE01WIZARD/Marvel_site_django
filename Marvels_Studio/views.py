@@ -1,74 +1,66 @@
-from django.contrib.auth.forms import UserCreationForm
-
-
+from django.contrib.auth import logout, login
+from django.contrib.auth.views import LoginView
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from rest_framework.response import Response
-from Marvels_Studio.views import *
+from .views import *
 from django.views.generic.base import View
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from django.views.generic.detail import DataMixin
-from .forms import * # импорт формы из forms.py
-from Marvels_Studio.models import *
 from rest_framework.views import APIView
 from django.core.paginator import Paginator
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect, get_object_or_404
+
+from .forms import * # импорт формы из forms.py
+from .models import *
 
 # повторить материал https://www.youtube.com/watch?v=u37FXeVQIpU&list=PLA0M1Bcd0w8xO_39zZll2u1lz_Q-Mwn1F&index=13
-def add(request): # форма
+
+
+def add(request): # форма добавления фильмов, не работает 11.09.2022
 	if request.method == 'POST':
 		form = FormAdd(request.POST)
 		if form.is_valid():
-			print(form.cleaned_data, 'Данные переданы через POST запрос!!!')
+		# print(form.cleaned_data, 'Данные переданы через POST запрос!!!')
+			try:
+				Movie.objects.create(**form.cleaned_data)
+				return redirect('home')
+			except:
+				form.add_error(None, 'Ошибка добавления поста')
 	else:
 		form = FormAdd()
 	return render(request, 'movies/+.html', {'form': form})# 'form' присваем значение переменной form
 
 
-# class Movies(DataMixin, ListView):  # создаём класс MoviesView и наследуемся от класса Django (Views)
-# 	def get(self, request):  # создаём метод get которая будет приниать запросы http
-# 		# request - присланная информация от нашего клиента, принимает запросы от браузера
-# 		movies = Movie.objects.all() # с помощью менеджера objects забираем всю информацию
-# 		return render(request, 'movies/movies.html', {'movie_list': movies})  # ключ словарь, записи
-# # наших фильмов
-
-
-def Movies(request):
+def Movies(request): # представление страницы фильмы с пагинацией
 	contact_list = Movie.objects.all()
-	paginator = Paginator(contact_list, 1)
-
+	paginator = Paginator(contact_list, 2)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
-	return render(request, 'movies/movies.html', {'page_obj': page_obj} )
+	return render(request, 'movies/movies.html', {'page_obj': page_obj})
 
 
-
-class Detail(View): # создаём класс Detail и наследуемся от класса Django (Views)
-	def get(self, request, slug):  # принимаем get запрос, на который передаётся requset и pk, сюда придёт ID
-		# pk некое число которое передаём из URL
-		movie = Movie.objects.get(url=slug)  # делаем запрос в БД через модель мовие, метод get который
-		# получает одну запись и id нашей записи сравнваем с пришедшим PK
-		# в Django id определяется как Pk
-		return render(request, "movies/detail.html", {"movies": movie})
+class Series(ListView):
+	model = Series
+	template_name = "movies/series.html"
+	context_object_name = "movie"
 
 
-#def Movies(request, movieid):
-	#return HttpResponse(f'<h1> Статьи </h1><p> {movieid}</p>')
+# def show_movie(request, post_id): # представление показание фильмов
+# 	movie_show = get_object_or_404(Movie, pk=post_id) # будем брать запись из модели Movie
+# 	# pk-первичный ключ соответствует идентификатору
+# 	context = {
+# 		'movie': movie_show, # ссылка на объект Movie
+# 		'title': movie_show.title,
+# 		'cat_selected': movie_show.cat_id, # номер
+# 	}
+# 	return render(request, 'movie/show_movie.html', context=context)
 
 
-class About(View):
-	def get(self, request):
-		movie2 = Movie.objects.all()
-		return render(request, "movies/about.html", {"movie": movie2})
-
-# Поиск фильмов
-
-# class Search(ListView):
-
-
-#class MovieAPI(generics.ListAPIView):
-	#queryset = Movie.objects.all()
-	#serializer_class = MovieSerializer
+class About(ListView):
+	model = Movie
+	template_name = "movies/about.html"
+	context_object_name = "movie"
 
 
 class MovieAPI(APIView): #API ЗАПРОС
@@ -88,19 +80,31 @@ class AboutUsView(View):
 		return render (request, "movies/about us.html", {'infos': info, 'famous': famous1})
 
 
-class AboutRegView(TemplateView):
-	template_name = "movies/reg.html"
+class Register(DataMixin, CreateView): # унаследуем от стандартного класса createview
+	form_class = RegisterForm # стандартная форма для регистрации пользователей
+	template_name = "movies/reg.html" # ссылка на шаблон
+	success_url = reverse_lazy('auth') # перенаправление при успешной авторизации на страницу 'auth.html'
 
 
-class Register(DataMixin, CreateView):
-	form_class = UserCreationForm # стандартная форма для регистрации пользователей
-	template_name = "movies/auth.html" # ссылка на шаблон
-	success_url = reverse_lazy('login') # перенаправление при успешной авторизации
+	def form_valid(self, form): # метод вызывается при успешной ПРОВЕРКИ ФОРМЫ регисстрации
+		user = form.save() # сохраняем пользователя в БД
+		login(self.request, user) # ВЫЗЫВАЕМ ФУНКЦИЮ ДЛЯ АВТООИЗАЦИИ ПОЛЬЗОВАТЕЛЯ
+		return redirect('about')
 
-	# def get_context_data(self, *, object_list=None, **kwargs):
-	# 	context = super().get_context_data(**kwargs)
-	# 	c_def = self.get_user_context(title="Регистрация")
-	# 	return dict(list(context.items()) + list(c_def.items()))
+
+class Auth(DataMixin, LoginView): # LoginView - вся логика авторизации
+	form_class = LoginUserForm
+	template_name = "movies/auth.html"
+
+	def get_success_url(self): # функция вызывается если пользователь верно вел пароль
+		return reverse_lazy('about') # функция перенаправит на главную страницу
+
+
+def logout_user(request): # функция выхода из системы
+	logout(request)
+	return redirect('auth')
+
+
 
 
 class AboutFeedView(TemplateView):
@@ -109,10 +113,6 @@ class AboutFeedView(TemplateView):
 
 class AboutDateView(TemplateView):
 	template_name = "movies/date.html"
-
-
-class AboutPagiView(TemplateView):
-	template_name = "movies/pagi.html"
 
 
 class AboutListView(TemplateView):

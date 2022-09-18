@@ -1,21 +1,24 @@
 {% extends "movies/about.html" %}
 {% load static %}
 {% block title %}<title>Вход</title> {% endblock %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     {% block header %}
-     <div id="page" class="page"><!-- mian-content -->
-         <div class="main-banner bg bg1" id="home" style="background-color: rgba(255, 255, 255, 255); margin-top: 11px; background-image: url({% static 'aveng.jpg' %})">
-             <h3 align="center">Вход</h3>
-             <form class="form" action="" method="post">
-                 <input class="input" type="email" placeholder="Ваш e-mail"><br>
-                 <input class="input" type="password" placeholder="Пароль"><br>
-                 <span><h5>Забыли</h5><a href="" title="Забыли пароль">пароль</a> </span>
-                 <button class="btn" type="submit">Войти</button><br>
-                 <button class="btn" type="submit">Регистрация</button><br>
+<div class="form-auth"
+     <div align="center" style="background-image: url({% static 'aveng.jpg' %})">
+        <h3 align="center">Вход</h3>
+        <div class="form-error">{{ form.non_field_errors }}</div>
+             <!-- выводит сообщение  "Пожалуйста, введите правильные имя пользователя и пароль.
+                     Оба поля могут быть чувствительны к регистру".-->
+             <form method="post">
+                 {% csrf_token %}
 
+<!--будем перебирать элемент формы и выводить в тегах-->
+             {% for f in form %}
+<!--выводим в тегах-->
+    <p><label class="form-label" for="{{f.id_for_label }}">{{f.label}}:</label>{{f}}</p>
+<!--Отображать ошибки если они возникают-->
+    <div class="form-error">{{ f.errors }}</div>
+                 {% endfor %}
+    <button type="submit">Войти</button>
             </form>
+</div>
     {% endblock %}
-</head>
-</html>

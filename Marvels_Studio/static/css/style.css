@@ -26,7 +26,7 @@ float: center;
 /*********************************************FOOTER, HEADER//////////////////////////////////////////**/
 header, footer {
     border-radius: 10px;
-    border:2px solid black;
+    border:0px solid black;
     width: 99%; /*на весь экран*/
     background-color:#38aafcdc; /* фон */
     min-height: 96px; /*50 пикселей */
@@ -68,7 +68,7 @@ a:hover { /*цвет при наведении*/
     -webkit-transition: all.6s ease;
     -ms-transition: all.6s ease;
     background-color: white;
-    border-radius: 5px;
+
 
 }
 
@@ -129,7 +129,7 @@ footer, #page-wrap{height:10px}
 
 .date a:hover{
     background-color:black;
-    border-radius:6px;
+    border-radius:2px;
     border: 2px solid black;
     width:12%;
 
@@ -232,10 +232,11 @@ Nas:hover {
 
 }
 #menu hr {
-    width: 500px;
+    width: 1150px;
     max-width: 100%;
     margin-top: 5px;
     margin-bottom: 10px;
+    color:silver;
 
 }
 
@@ -338,7 +339,9 @@ border-radius: 12%;
 #main_soc_block_in a:hover{
     font-size:21px;
     border-radius: 5px;
-    background-color: blue;
+    background-color: white;
+    border:2px solid black;
+    border-radius:13px;
 
 
 
@@ -499,6 +502,29 @@ input[type=text].field{
   background-color: #0896fcdc;
   font-size: 20px;
 }
+/*//////////////////////////////////////АВТОРИЗАЦИЯ//////////////////////////////////////////////////**/
+#users{
+    color: black;
+    margin-left: 1530px;
+
+}
+
+#users a{
+    font-size:20px;
+    color:black;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+#users a:hover{
+    font-size:20px;
+    color:black;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+
+
 
 /*////////////////////////ОБРАТНАЯ СВЯЗЬ////////////////////////////////////////////////////////////**/
 .feed {
@@ -756,11 +782,77 @@ body {font-family: Verdana, sans-serif;}
     border-radius:12px;
 }
 
-#add{
+#add1{
+
     margin-top:10px;
-    margin-left:10px;
-    float:center;
-    width:30%;
-    border:2px solid black;
+    width:45%;
+    padding:40px;
     border-radius:9px;
+    margin-left:600px;
+
 }
+
+#add{
+    align:center;
+    margin-top:10px;
+    margin-left:0px;
+    float:center;
+    width:100%;
+    background: url("/static/aveng.jpg") repeat-x center 0;
+
+}
+
+
+.form-input {
+    width: 300px;
+    font-size: 16px;
+    border-radius:6px;
+}
+
+.form-reg {
+    color:black;
+    display: inline-block;
+    min-width: 150px;
+    vertical-align: top;
+}
+
+
+
+.formadd{
+    color:black;
+    display: inline-block;
+    min-width: 150px;
+    vertical-align: top;
+
+}
+
+.form-error ul {
+    list-style: none;
+    padding: 0;
+    color: red;
+}
+.form-label {
+    display: inline-block;
+    min-width: 150px;
+    vertical-align: top;
+}
+
+#post{
+    color:red;
+}
+
+#exit{
+    color:black;
+}
+
+#id_clock{
+    color:black;
+    font-size:22px;
+    width:5%;
+    border:2px solid white;
+    border-radius:12px;
+    margin-left:10px;
+
+}
+
+

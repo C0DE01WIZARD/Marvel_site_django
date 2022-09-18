@@ -1,0 +1,35 @@
+a{
+    color:black;
+    font-size:16px;
+}
+
+
+.site-name{
+    background-color:blue;
+    font-size:12px;
+    border: 2px solid black;
+    border-radius: 4px;
+    color:black;
+    margin-left:632px;
+    float:left;
+}
+
+.site-name a{
+    color:black;
+}
+
+.site-name a:hover{
+    color:black;
+}
+
+#iconadmin{
+    width: 3%;
+    border-radius:4px;
+    margin-left:21px;
+    float:left;
+}
+
+#header{
+    border-radius:4px
+
+}

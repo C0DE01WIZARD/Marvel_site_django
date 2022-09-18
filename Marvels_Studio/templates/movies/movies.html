@@ -2,9 +2,9 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    {% block title %}<title>Наши кинофильмы</title>{% endblock %}
+    {% block title %}<title>Кинофильмы</title>{% endblock %}
     {% block header %}
-<h3 align="center">Наши кинофильмы</h3>
+<h3 align="center">Кинофильмы</h3>
       <!--pagination-->
             <nav>
                 <ul>
@@ -22,10 +22,11 @@
             <div class="col-md-4 product-men">
                 <img src="{{ movie.poster.url }}" id="movies">
                 <div>
-                    <a href="/" class="editContent">{{ movie.title }}</a>
+                    <a href="{{ movie.url }}" class="editContent">{{ movie.title }}</a>
                     <h4>Страна:   {{ movie.country}}</h4>
                         <h3><span>{{ movie.year }} г. </span></h3>
                         <span>Слоган: {{ movie.tagline }}</span>
+
                 </div>
             </div>
             {% endfor %}

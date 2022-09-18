@@ -1,0 +1,26 @@
+{% extends "movies/about.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Сериалы</title>{% endblock %}
+    {% block header %}
+<h3 align="center">Сериалы</h3>
+    <div id="movie">
+        <div class="row">
+            {% for series in movie %}
+            <div class="col-md-4 product-men">
+                <img src="{{ series.photo.url }}" id="movies">
+                <div>
+                    <a href="{{ series.url }}" class="editContent">{{ series.title }}</a>
+                    <h4>Добавлено: {{ series.time_create}}</h4>
+                    <h4>Внесены изменения: {{ series.time_update}}</h4>
+                        <h3><span>{{ series.year }} г. </span></h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+        {% endblock %}
+</head>
+</html>

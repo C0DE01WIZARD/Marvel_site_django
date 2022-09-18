@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = '1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # отладка проекта
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1']  # разрешенные хосты, домены
 INSTALLED_APPS = [  # добавление приложения
 	'Marvels_Studio', # новое приложение
 	'rest_framework', # новое API
+	'debug_toolbar', # приложение DjangoToolBar
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [  # добавление приложения
 ]
 
 MIDDLEWARE = [  # список
+	'debug_toolbar.middleware.DebugToolbarMiddleware', # Для оптимизации сайта DjangoToolBar
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
@@ -124,3 +126,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # передать путь к д�
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INTERNAL_IPS =[ # Django toll bar
+	'127.0.0.1',
+]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}

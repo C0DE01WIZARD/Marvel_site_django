@@ -1,0 +1,9 @@
+{% extends "movies/about.html" %}
+{% load static %}
+<h1>{{movie_show.title}}</h1>
+
+{% if movie_show.photo %}
+
+{% block title %}<title>Детали фильма</title> {% endblock %}
+{% block header %}
+{% endblock %}

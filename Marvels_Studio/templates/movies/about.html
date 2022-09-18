@@ -9,6 +9,20 @@
 {% endblock %}
 <html lang="en">
 <head>
+    <script>
+   function digitalClock() {
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+       //* добавление ведущих нулей */
+      if (hours < 10) hours = "0" + hours;
+      if (minutes < 10) minutes = "0" + minutes;
+      if (seconds < 10) seconds = "0" + seconds;
+        document.getElementById("id_clock").innerHTML = hours + ":" + minutes + ":" + seconds;
+        setTimeout("digitalClock()", 1000);
+   }
+  </script>
     <meta charset="UTF-8">
     <meta charset="utf-8"> <!--Установка кодировки для корректного отображения-->
     <meta name="author" content="IT Rushan">
@@ -21,19 +35,30 @@
 
 </head>
 <body>
+
 <div id="page-wrap">
 <header>
-    <a href="/about"><img src="{% static 'icon.png' %} "></a>
-    <a href="/about" title="На главную" id="logo">Сайт киновселенной Марвел</a> <span id="contact"><br>
+    <a href="/"><img src="{% static 'icon.png' %} "></a>
+    <a href="/" title="На главную" id="logo">Сайт киновселенной Марвел</a> <span id="contact"><br>
 
     <form action="{% url 'movies' %}" method="get" ></span>
     <input type="text" class="field" placeholder="Найти на сайте" name="q"/>
     <button type="submit" id="but-search">Поиск</button>
-    </form></a>
+    </form></a><br>
+<div id="id_clock"></div>
+    <script>digitalClock();</script>
+        <!-- при регистрации менялось надпись регистрация на имя зарегистрированного пользователя  -->
 
-    <span class="right"> <span class="contact"><a href='/reg' title="Зарегистрироваться">Регистрация</a>
+    {% if request.user.is_authenticated %} <!--Если пользователь зарегистрирован то отображается Имя ниже
+     иначе обычная страница about-->
+    <h4 id="users">Профиль:{{ user.username }}
+        <a href="{% url 'logout' %}" id="exit">Выйти</a></h4>
+    {% else %} <!-- Иначе отображается ссылка регистрации "Войти" -->
+    <span class="right"> <span class="contact"><a href="{% url 'reg' %}"title="Зарегистрироваться">Регистрация</a>
+
         <span class="contact"><a href="{% url 'auth' %}" title="Введите ваш логин и пароль">Вход</a>
-            <span class="date"><a href='/admin' title="Админ" <img src="{% static 'icon.png' %} ">Админка</a>
+            {% endif %}
+        <span class="contact"><a href='/admin' title="Админ" <img src="{% static 'icon.png' %} ">Админка</a>
 
 </header>
 
@@ -44,11 +69,12 @@
             <div id="menuHrefs"> </div>
             <a href="/news" id="menu1">Новости</a>
             <a href="{% url 'about_us' %}" id="menu2">О нас</a>
-           
+
             <a href="/list" id="menu4">Киновеселенная по порядку</a>
             <a href="/movie" id="menu5">Кинофильмы</a>
+            <a href="/series" id="menu5">Сериалы</a>
             <a href="/feed" id="menu6">Обратная связь</a>
-            <a href="/add" id="menu7">+</a>
+            <a href="/add" id="menu6">Добавить фильм</a>
         </div>
 
     </center><br>
@@ -68,7 +94,7 @@
             </article>
 
             <article>
-                <h5 id="menu1" align="center">Скоро здесь будет вакантный блог</h5>
+                <h5 id="menu1" align="center">Скоро здесь будет блог</h5>
 
             </article>
         </div>

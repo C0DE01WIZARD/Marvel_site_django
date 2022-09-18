@@ -2,15 +2,24 @@
 {% load static %}
 {% block title %}<title>Добавить</title>{% endblock %}
 {% block header %}
-<div id="add">
-<h3 align="center">{{ post }}</h3>
-<p align="center">Добавить форму</p>
-<form action="{% url 'add' %}" method="post"> <!-- url '' означает к какой форме мы должны обратиться -->
-    {% csrf_token %} <!-- Защита от csrf атак, дублирующих сайтов, сопоставлением токенов -->
-    {{ form.as_p }} <!-- Позволяет отображать все поля формы через тег абзац -->
 
-    <button type="submit">Добавить</button>
-</form>
+<div id="add">
+    <h3 align="center">Добавить фильм</h3>
+    <div id="add1">
+        <h3 align="center">{{ post }}</h3>
+
+        <form action="{% url 'add' %}" method="post"> <!--перенаправление url '' означает к какой форме мы должны обратиться -->
+            {% csrf_token %} <!-- Защита формы от csrf атак, дублирующих сайтов, сопоставлением токенов -->
+            <div class="form-error">{{ form.non_field_errors }}</div>
+
+            {% for f in form %}
+            <p><label class="formadd" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
+            <button type="submit">Добавить</button><br>
+        </form>
+
+    </div>
 </div>
 {% endblock %}
 </html>

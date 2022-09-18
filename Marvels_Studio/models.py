@@ -33,6 +33,25 @@ class Category(models.Model):  # импортируем models из django.db н
 		verbose_name_plural = 'Категории'
 
 
+class Series(models.Model):
+	title = models.CharField("Название", max_length=30)
+	year = models.CharField("Год", max_length=4)
+	photo = models.ImageField("Постер", upload_to='series/%Y/%m/%d/')
+	time_create = models.DateTimeField(auto_now_add=True)
+	time_update = models.DateTimeField(auto_now=True)
+	url = models.SlugField(max_length=30, unique=True)
+	cat = models.ManyToManyField(Category, verbose_name='Категории')
+	is_published = models.BooleanField('Публикация', default=True)
+
+	def __str__(self):
+		return self.title
+
+	class Meta:
+		verbose_name = "Сериал"
+		verbose_name_plural = "Сериалы"
+
+
+
 # работающий класс
 
 
@@ -40,7 +59,8 @@ class Actor(models.Model):
 	name = models.CharField('Имена актёров', max_length=150)
 	age = models.PositiveSmallIntegerField('Возраст актёров', default=0)
 	description = models.TextField('Описание', max_length=1500)
-	image = models.ImageField('Фотография актёра', upload_to='actor/', default='default title')
+	image = models.ImageField('Фотография актёра', upload_to='actor/%Y/%m/%d/', default='default title')
+
 
 	def __str__(self):
 		return self.name
@@ -118,7 +138,7 @@ class Movie(models.Model):
 	# draft - черновик
 	draft = models.BooleanField('Черновик', default=False)
 	time_create = models.DateTimeField(auto_now_add=True, null=True)
-	is_published = models.BooleanField(default=True)
+	is_published = models.BooleanField("Публикация", default=True)
 
 	def __str__(self):
 		return self.title
@@ -202,11 +222,11 @@ class Reviews(models.Model):
 
 
 class Articles(models.Model):
-	name = models.TextField("Название статьи")
+	name = models.CharField("Название статьи", max_length=255)
 	text = models.TextField("Содержание статьи")
 
 	def __str__(self):
-		return self.text
+		return f'{self.name}'
 
 	class Meta:
 		verbose_name = 'Статья'
