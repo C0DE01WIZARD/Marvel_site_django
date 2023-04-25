@@ -1,0 +1,20 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block header %}
+{% block title %}<title>Информация об актёрах</title>{% endblock %}
+<div id="movie">
+    <h3 align="center">Актёры и актрисы</h3>
+    <div class="row">
+{% for a in actors %}
+        <div class="col-md-4 product-men">
+              <a href="{{ a.url }}" class="editContent">
+                  <img src = "{{a.image.url}}" id="movies"></a>
+            <div>
+         <a href="{{ a.url }}" class="editContent">{{ a.name }}</a>
+         <h3><span>{{ a.description|truncatewords:10 }} </span></h3>
+            <p id="all_info"> <a href="{{a.url}}">Читать полностью</a></p>
+            </div>
+        </div>
+
+{% endfor %}
+{% endblock %}

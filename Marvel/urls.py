@@ -15,30 +15,34 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings # импортируем из django.counf из settings
-from django.conf.urls.static import static
-from Marvels_Studio.views import MovieAPI
+from django.conf import settings  # импортируем из django.counf из settings
+from django.conf.urls.static import static  # импорт для функции static
+from Marvels_Studio.views import MovieAPI, MovieAPI2
 import debug_toolbar
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('Marvels_Studio.urls')), # подключаем URL нашего приложения
-    path('hello/', views.hello, name='hello'),
-    path('error/', views.error, name='error'),
-    path('api/v1/MovieAPI/', MovieAPI.as_view()),
-    path('__debug__/', include(debug_toolbar.urls))
+	# HTML
+	path('admin/', admin.site.urls),
+	path('', include('Marvels_Studio.urls')),  # подключаем URL нашего приложения
+	path('', include('payment.urls')),
+	path('hello/', views.hello, name='hello'),
+	path('error/', views.error, name='error'),
+	# API
+	path('api/v1/MovieAPI/', MovieAPI.as_view()),  # API 1
+	path('api/v2/MovieAPI2/', MovieAPI2.as_view())  # API 2
+
 ]
 
 # Джанго будет раздавть медия при включенном DEBUG
-handler404 = "Marvel.views.page_not_found_view"
+handler404 = "Marvel.views.page_not_found_view"  # обработчик исключений 404
 
-if settings.DEBUG: # если наш DEBUG включен, то
-    urlpatterns = [
-    path('__debug__/', include(debug_toolbar.urls)),
-        ] + urlpatterns
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # ДЖАНГО будет раздавть наши
-    # файлы при включенном Debug режиме для работы со статическими данными
+if settings.DEBUG:  # если наш DEBUG включен, то
+	urlpatterns = [
+					  path('__debug__/', include(debug_toolbar.urls)),
+				  ] + urlpatterns
 
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # ДЖАНГО будет раздавть наши
+	# файлы при включенном Debug режиме для работы со статическими данными
 
 # таким образом Django будет раздавать файлы при включенном Debug режиме

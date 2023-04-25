@@ -5,9 +5,11 @@
 
 <div id="add">
     <h3 align="center">Добавить фильм</h3>
-    <div id="add1">
-        <h3 align="center">{{ post }}</h3>
+    <h3 align="center">Страница для администраторов сайта</h3>
 
+    <div id="add1">
+
+        <h3 align="center">{{ post }}</h3>
         <form action="{% url 'add' %}" method="post"> <!--перенаправление url '' означает к какой форме мы должны обратиться -->
             {% csrf_token %} <!-- Защита формы от csrf атак, дублирующих сайтов, сопоставлением токенов -->
             <div class="form-error">{{ form.non_field_errors }}</div>

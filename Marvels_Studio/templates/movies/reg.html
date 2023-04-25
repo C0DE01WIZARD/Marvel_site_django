@@ -5,7 +5,7 @@
 
 <div align="center" style="background-image: url({% static 'aveng.jpg' %})">
          <h3 align="center">Регистрация</h3>
-         <form method="post">
+         <form action="{% url 'message'%}" method="post">
              {% csrf_token %}
              {% for f in form %}
 <p><label class="form-reg" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>

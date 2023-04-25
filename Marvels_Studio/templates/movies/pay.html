@@ -1,0 +1,51 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %}<title>Оплата</title>{% endblock %}
+ {% block header %}
+<h3 align="center">Оплата товара</h3>
+
+
+<div class="form-auth">
+     <div align="center" style="background-image: url({% static 'aveng.jpg' %})">
+        <h3 align="center">Вход</h3>
+      <label for="card-number"> Номер карты </label>
+      <input type="num" id="card-number" class="input-cart-number" maxlength="16" /><br>
+      <label for="card-holder">Имя владельца</label>
+      <input type="text" id="card-holder" /><br>
+      <label for="card-expiration-month">Дата выпуска</label>
+        <select>
+          <option></option>
+          <option>01</option>
+          <option>02</option>
+          <option>03</option>
+          <option>04</option>
+          <option>05</option>
+          <option>06</option>
+          <option>07</option>
+          <option>08</option>
+          <option>09</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
+        <select id="card-expiration-year">
+          <option></option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+     </div>
+<div>
+
+      <label for="card-ccv">CCV</label>
+      <input type="text" id="card-ccv" maxlength="3" /><br>
+    <button class="btn2"><i class="fa fa-lock"></i>Оплатить</button>
+</div>
+
+ {% endblock %}

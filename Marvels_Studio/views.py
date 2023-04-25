@@ -1,123 +1,182 @@
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
+from django.forms import model_to_dict
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from rest_framework import generics
 from rest_framework.response import Response
+
+from .serializers import MovieSerializer
 from .views import *
 from django.views.generic.base import View
-from django.views.generic import ListView, DetailView, TemplateView, CreateView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, FormView
 from django.views.generic.detail import DataMixin
 from rest_framework.views import APIView
+from rest_framework import generics
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import * # импорт формы из forms.py
+from .forms import *  # импорт формы из forms.py
 from .models import *
+from django.http import HttpResponse
 
-# повторить материал https://www.youtube.com/watch?v=u37FXeVQIpU&list=PLA0M1Bcd0w8xO_39zZll2u1lz_Q-Mwn1F&index=13
+
+class Trailer(ListView):
+	model = Movie
+	template_name = "movies/trailer.html"
+
+class Pay(View):
+	def get(self, request):
+		return render(request, "movies/pay.html")
+
+class MovieDet(View):
+	def get(self, request, slug):
+		detail = Movie.objects.get(url=slug)  # get - метод который принимает один объект
+		return render(request, 'movies/detail.html', {'movie': detail})
 
 
-def add(request): # форма добавления фильмов, не работает 11.09.2022
+class SeriesDet(View):
+	def get(self, request, slug):
+		series = Series.objects.get(url=slug)  # get - метод который принимает один объект
+		return render(request, 'movies/seriesdetail.html', {'series': series})
+
+
+class ActorsDet(View):
+	def get(self, request, slug):
+		detail1 = Actor.objects.get(url=slug)  # get - метод который принимает один объект
+		return render(request, 'movies/actorsdetail.html', {'actors': detail1})
+
+
+def Actors(request):
+	actor = Actor.objects.all()
+	return render(request, 'movies/actors.html', {'actors': actor, 'title': 'Актеры'})
+
+
+def Message(request):
+	return render(request, 'movies/message_post.html')
+
+
+def add(request):  # форма добавления фильмов
 	if request.method == 'POST':
 		form = FormAdd(request.POST)
 		if form.is_valid():
-		# print(form.cleaned_data, 'Данные переданы через POST запрос!!!')
+			# print(form.cleaned_data, 'Данные переданы через POST запрос!!!')
 			try:
-				Movie.objects.create(**form.cleaned_data)
-				return redirect('home')
+				form.save()
+				return redirect('about')
 			except:
 				form.add_error(None, 'Ошибка добавления поста')
 	else:
 		form = FormAdd()
-	return render(request, 'movies/+.html', {'form': form})# 'form' присваем значение переменной form
+	return render(request, 'movies/+.html', {'form': form})  # 'form' присваем значение переменной form
 
 
-def Movies(request): # представление страницы фильмы с пагинацией
+def FeedAdd(request):  # форма добавления обратной связи
+	if request.method == 'POST':
+		form = FeedBack(request.POST)
+		if form.is_valid():
+			# print(form.cleaned_data, 'Данные переданы через POST запрос!!!')
+			try:
+				form.save()
+				return redirect('about')
+			except:
+				form.add_error(None, 'Ошибка добавления обратной связи')
+	else:
+		form = FeedBack()
+	return render(request, 'movies/feedback.html', {'form': form})  # 'form' присваем значение переменной form
+
+
+def Movies(request):  # представление страницы фильмы с пагинацией
 	contact_list = Movie.objects.all()
-	paginator = Paginator(contact_list, 2)
+	paginator = Paginator(contact_list, 3)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
 	return render(request, 'movies/movies.html', {'page_obj': page_obj})
 
 
-class Series(ListView):
+class SeriesD(ListView):
 	model = Series
 	template_name = "movies/series.html"
 	context_object_name = "movie"
 
 
-# def show_movie(request, post_id): # представление показание фильмов
-# 	movie_show = get_object_or_404(Movie, pk=post_id) # будем брать запись из модели Movie
-# 	# pk-первичный ключ соответствует идентификатору
-# 	context = {
-# 		'movie': movie_show, # ссылка на объект Movie
-# 		'title': movie_show.title,
-# 		'cat_selected': movie_show.cat_id, # номер
-# 	}
-# 	return render(request, 'movie/show_movie.html', context=context)
+def About(request):  # представление страницы фильмы с пагинацией
+	contact_list = Feed.objects.all()
+	paginator1 = Paginator(contact_list, 4)
+
+	contact_list = News.objects.all()
+	paginator2 = Paginator(contact_list, 1)
+
+	page_number = request.GET.get('page')
+	page_obj1 = paginator1.get_page(page_number)
+
+	page_number = request.GET.get('page')
+	page_obj2 = paginator2.get_page(page_number)
+
+	return render(request, 'movies/about.html', {'page_obj1': page_obj1, 'page_obj2': page_obj2})
 
 
-class About(ListView):
-	model = Movie
-	template_name = "movies/about.html"
-	context_object_name = "movie"
+class MovieAPI(APIView):  # API ЗАПРОСЫ
+	def get(self, request):  # запрос GET, метод за обработку get запросов, без серилиазатора
+		lst = Feed.objects.all().values() # values - набор значений для перед, список из БД
+		return Response({'post': list(lst)})  # передача данных в GET запрос для вывоода, возвращение JSON СТРОКИ
 
 
-class MovieAPI(APIView): #API ЗАПРОС
-	def get(self, request): # запрос GET
-		lst = Movie.objects.all().values()
-		return Response({'post': list(lst)}) # передача данных в GET запрос для вывоода
 
-	def post(self, request): # ЗАПРОС POSTб добавление данных в БД
-		post_new = Movie.objects.create()
-		return Response({'title': 'Тор'})
+	def post(self, request):  # ЗАПРОС POST добавление данных в БД
+		post_new = Feed.objects.create(
+			name=request.data['name', False],
+			email=request.data['email', False],
+			text=request.data['text', False],
+			time_create=request.data['create', False]
+		)
+		return Response({'post': model_to_dict(post_new)})
 
+
+class MovieAPI2(generics.ListAPIView):
+	queryset = Movie.objects.all()
+	serializer_class = MovieSerializer
 
 class AboutUsView(View):
 	def get(self, request):
 		info = Info.objects.all()
 		famous1 = Famous_actors.objects.all()
-		return render (request, "movies/about us.html", {'infos': info, 'famous': famous1})
+		return render(request, "movies/about us.html", {'infos': info, 'famous': famous1})
 
 
-class Register(DataMixin, CreateView): # унаследуем от стандартного класса createview
-	form_class = RegisterForm # стандартная форма для регистрации пользователей
-	template_name = "movies/reg.html" # ссылка на шаблон
-	success_url = reverse_lazy('auth') # перенаправление при успешной авторизации на страницу 'auth.html'
+class Register(DataMixin, CreateView):  # унаследуем от стандартного класса createview
+	form_class = RegisterForm  # стандартная форма для регистрации пользователей
+	template_name = "movies/reg.html"  # ссылка на шаблон
+	success_url = reverse_lazy('auth')  # перенаправление при успешной авторизации на страницу 'auth.html'
 
-
-	def form_valid(self, form): # метод вызывается при успешной ПРОВЕРКИ ФОРМЫ регисстрации
-		user = form.save() # сохраняем пользователя в БД
-		login(self.request, user) # ВЫЗЫВАЕМ ФУНКЦИЮ ДЛЯ АВТООИЗАЦИИ ПОЛЬЗОВАТЕЛЯ
+	def form_valid(self, form):  # метод вызывается при успешной ПРОВЕРКИ ФОРМЫ регисстрации
+		user = form.save()  # сохраняем пользователя в БД
+		login(self.request, user)  # ВЫЗЫВАЕМ ФУНКЦИЮ ДЛЯ АВТООИЗАЦИИ ПОЛЬЗОВАТЕЛЯ
 		return redirect('about')
 
 
-class Auth(DataMixin, LoginView): # LoginView - вся логика авторизации
-	form_class = LoginUserForm
+class Auth(DataMixin, LoginView):  # LoginView - вся логика авторизации
+	form_class =  LoginUserForm
 	template_name = "movies/auth.html"
 
-	def get_success_url(self): # функция вызывается если пользователь верно вел пароль
-		return reverse_lazy('about') # функция перенаправит на главную страницу
+	def get_success_url(self):  # функция вызывается если пользователь верно вел пароль
+		return reverse_lazy('about')  # функция перенаправит на главную страницу
 
 
-def logout_user(request): # функция выхода из системы
+def logout_user(request):  # функция выхода из системы
 	logout(request)
 	return redirect('auth')
 
 
+def Sales(request):  # представление страницы  с пагинацией
+	contact_list = SalesM.objects.all()
+	paginator = Paginator(contact_list, 4)
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+	return render(request, 'movies/sales.html', {'page_obj': page_obj})
 
 
-class AboutFeedView(TemplateView):
-	template_name = "movies/feedback.html"
-
-
-class AboutDateView(TemplateView):
-	template_name = "movies/date.html"
-
-
-class AboutListView(TemplateView):
-	template_name = "movies/list.html"
-
-
-class News(TemplateView):
-	template_name = "movies/news.html"
+def Newss(request):
+	news = News.objects.all()
+	famous_actors = Actor.objects.all()
+	return render(request, 'movies/news.html', {'newss': news, 'famous': famous_actors})

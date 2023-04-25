@@ -9,7 +9,8 @@
         <div class="row">
             {% for series in movie %}
             <div class="col-md-4 product-men">
-                <img src="{{ series.photo.url }}" id="movies">
+                <a href="{% url 'seriesdet' series.url %}" class="editContent">
+                <img src="{{ series.photo.url }}" id="movies"></a>
                 <div>
                     <a href="{{ series.url }}" class="editContent">{{ series.title }}</a>
                     <h4>Добавлено: {{ series.time_create}}</h4>

@@ -1,0 +1,49 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %}<title>Наши товары</title>{% endblock %}
+{% block header %}
+<h3 align="center">Наши товары</h3>
+<div id="movie">
+    <div class="row">
+        {% for f in page_obj %}
+        <div class="col-md-4 product-men">
+            <div id="sales">
+                <h4 align="center">Код товара:{{ f.code }}</h4>
+                <a href="{% url 'about'%}" class="urlseries"><img src="{{ f.image.url }}" class="imgabout"></a>
+
+                <h4><span><a href="{% url 'about'%}" class="editContent">{{ f.sale }}</a></span></h4>
+                <h3>Наименование товара:{{ f.title }}</h3>
+
+                <h3>Наличие: {{ f.availability }} шт.</h3>
+                <h3><span>Цена товара: {{ f.price }} р.</span></h3>
+                <a href="{% url 'pay' %}"> <button type="submit">Купить</button></a>
+
+
+                <button id="rin">
+                    <div class="default">Добавить в корзину</div>
+
+                    <div class="cart">
+                        <div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="dots"></div>
+                </button>
+
+                <!-- dribbble - twitter -->
+                <a class="dribbble" href="https://dribbble.com/shots/8553598-Add-to-cart" target="_blank"><img
+                        src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg"
+                        alt=""></a>
+                <a class="twitter" target="_blank" href="https://twitter.com/aaroniker_me">
+                </a>
+
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+{% endblock %}

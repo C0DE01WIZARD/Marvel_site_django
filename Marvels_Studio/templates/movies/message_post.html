@@ -1,0 +1,8 @@
+{% extends "movies/about.html" %}
+    {%block title %} <title>Успешная регистрация</title> {% endblock %}
+    {% block header %}
+    <h1>Пользователь успешно зарегистрирован</h1>
+    <h6><a href="{% url 'auth'%}" id="message">Войти</a></h6>
+
+
+  {% endblock %}

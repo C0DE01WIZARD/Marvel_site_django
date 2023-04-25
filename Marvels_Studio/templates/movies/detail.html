@@ -3,70 +3,53 @@
 {% block title %} <title>Детали фильма</title>{% endblock %}
 {% block header %}
 <div class="detail_div">
-    <img src="{{ movies.poster.url }}" class="img-detail">
+    <img src="{{ movie.poster.url }}" class="img-detail">
 </div>
 <div class="detail_div">
-    <h6>{{ movie.title }}</h6>
+    <h3>{{ movie.title }}</h3>
     <ul>
-        <li><span><b>Год:</b> {{ movies.year }}</span></li>
-        <li ><span><b>Страна:</b> {{ movies.country }}</span></li>
-        <li><span><b>Слоган:</b> {{ movies.tagline }}</span></li>
+        <li><span><b>Год:</b> {{ movie.year }}</span></li>
+        <li ><span><b>Страна:</b> {{ movie.country }}</span></li>
+        <li><span><b>Слоган:</b> {{ movie.tagline }}</span></li>
+
         <li><span><b>Режиссер:</b>
-            {% for direction in movies.direction.all %}
+            {% for direction in movie.direction.all %}
             {{ direction.name }}
             {% endfor %}
             </span></li>
-        <li><span><b>Актеры:</b>{% for actor in movies.actors.all %}
+        <li><span><b>Актеры:</b>{% for actor in movie.actors.all %}
             {{ actor.name }}
             {% endfor %}
             </span></li>
-        <li><span><b>Жанр:</b>{% for genre in movies.genres.all %}
+        <li><span><b>Жанр:</b>{% for genre in movie.genres.all %}
             {{ genre.name }}
             {% endfor %}
             </span></li>
-        <li><span><b>Премьера в мире:</b>{{ movies.world_premiere }}
+        <li><span><b>Премьера в мире:</b>{{ movie.world_premiere }}
             </span></li>
-        <li><span><b>Бюджет:</b>${{ movies.budget }}
+        <li><span><b>Бюджет:</b>${{ movie.budget }}
             </span></li>
-        <li><span><b>Сборы в США:</b> ${{ movies.fees_in_usa }}
+        <li><span><b>Сборы в США:</b> ${{ movie.fees_in_usa }}
             </span></li>
-        <li><span><b>Сборы в мире:</b> ${{ movies.fees_in_world }}
+        <li><span><b>Сборы в мире:</b> ${{ movie.fees_in_world }}
             </span></li>
-        <li><a href=""><p>Рейтинг:</p>
+        <a href=""><p>Рейтинг:</p>
             <span class="*1" aria-hidden="true" style="outline: none; cursor: inherit;"></span>
             <span class="*2" aria-hidden="true" style="outline: none; cursor: inherit;"></span>
             <span class="*3" aria-hidden="true" style="outline: none; cursor: inherit;"></span>
             <span class="*4" aria-hidden="true" style="outline: none; cursor: inherit;"></span>
             <span class="*5" aria-hidden="true" style="outline: none; cursor: inherit;"></span>
-            <span class="" style="outline: none; cursor: inherit;">{{ movies.rating }}</span></a></li></ul>
+            <span class="" style="outline: none; cursor: inherit;">{{ movie.rating }}8.3</span></a></li></ul>
 </div>
-<div>
-    <h3 class="shop-sing editContent">О фильме {{ movies.title }}</h3>
-    <p>{% for image in movies.movieshots_set.all %}
+
+<div><br>
+    <h3 class="col-md-4 product-men">О фильме {{ movie.title }}</h3>
+    <p>{% for image in movie.movieshots_set.all %}
         <img src="{{ image.image.url}}" class="img-fluid" alt="{{image.description}}">
         {% endfor %}
     </p>
-    <h5 id="descriptions">{{ movies.description }}</h5>
+    <h5 id="descriptions">{{ movie.description }}</h5>
 </div>
 
-<div class="row">
-    <form action="#" method="get" class="mt-4">
-        <div>
-            <label id="label">Ваш комментарий *</label><br>
-            <textarea id="comment2" placeholder="Введите ваш комментарий к фильму" ></textarea>
-        </div>
-        <div>
-            <label id="label" 1></label>
-            <input type="text" placeholder="Введите ваш e-mail" id="label_detail"></div>
-        <div>
-            <label id="label"</label>
-            <input type="email" placeholder="Введите ваше имя" id="label_detail"></div><br>
-<button id="detail_button">Отправить</button>
-    </form>
-</div>
 
 {% endblock %}
-
-
-
-</html>

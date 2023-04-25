@@ -14,17 +14,29 @@ class Review(forms.ModelForm):
 		fields = ("name", "email", "text")
 
 
-class FormAdd(forms.Form):  # класс формы который будет представлять на странице "добавить фильма"
-	# наследуется от базового класса Forms
-	# форму добавляем в views.py в  переменную form
-	title = forms.CharField(max_length=255, label='Название') # атрибуты для отображения формы
-	tagline = forms.CharField(max_length=100, label='Слоган')
-	slug = forms.SlugField(max_length=255, label="URL")
-	is_published = forms.BooleanField(label='Публикация', required=False)  # required=False-не обязательное поле
-	cat = forms.ModelChoiceField(queryset=Category.objects.all(), label='Категория', empty_label="Катеория не выбрана") # выпадающий список для выбора категорий
+# class FormAdd(forms.Form):  # класс формы который будет представлять на странице "добавить фильма"
+# 	# наследуется от базового класса Forms
+# 	# форму добавляем в views.py в  переменную form
+# 	title = forms.CharField(max_length=255, label='Название')  # атрибуты для отображения формы
+# 	tagline = forms.CharField(max_length=100, label='Слоган')
+# 	slug = forms.SlugField(max_length=255, label="URL")
+# 	is_published = forms.BooleanField(label='Публикация', required=False)  # required=False-не обязательное поле
+# 	cat = forms.ModelChoiceField(queryset=Category.objects.all(), label='Категория',
+# 								 empty_label="Катеория не выбрана")  # выпадающий список для выбора категорий
+
+class FormAdd(forms.ModelForm):
+	class Meta:
+		model = Movie # используемая модель
+		fields = '__all__' # какие поля использовать, показывать
 
 
-class RegisterForm(UserCreationForm): # форма регистрации
+class FeedBack(forms.ModelForm):
+	class Meta:
+		model = Feed # используемая модель
+		fields = '__all__' # какие поля использовать, показывать
+
+
+class RegisterForm(UserCreationForm):  # форма регистрации
 	username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
 	email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
 	password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
@@ -34,3 +46,11 @@ class RegisterForm(UserCreationForm): # форма регистрации
 class LoginUserForm(AuthenticationForm):
 	username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
 	password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': "form-input"}))
+
+
+# class Feed_Back_Form(forms.Form):
+# 	name = forms.CharField(label='Имя', max_length=255, widget=forms.TextInput(attrs={'class': 'form-input'}) )
+# 	email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class': 'form-input'}))
+# 	content = forms.CharField(label='Сообщение', widget=forms.Textarea(attrs={'cols': 40, 'rows': 10}))
+
+

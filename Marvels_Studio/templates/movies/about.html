@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
 {% block title %}
-{% for movie2 in movie %}
-
-{% endfor %}
 <title>Главная страница</title>
 
 {% endblock %}
@@ -22,14 +19,14 @@
         document.getElementById("id_clock").innerHTML = hours + ":" + minutes + ":" + seconds;
         setTimeout("digitalClock()", 1000);
    }
-  </script>
+    </script>
     <meta charset="UTF-8">
     <meta charset="utf-8"> <!--Установка кодировки для корректного отображения-->
     <meta name="author" content="IT Rushan">
     <meta name="description" content="Сайт Marvel Studio">
     <meta name="Marvels, MarvelStudio, сайт Марвел" content="Сайт Marvel Studio"> <!--Теги для поиска-->
     <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!--Добавление стиля-->
-    <link rel = "shortcut icon" type="image/x-icon" href="{% static 'cap.png' %}"> <!--Добавление иконки-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'cap.png' %}"> <!--Добавление иконки-->
     <script src="{% static 'js/script.js' %}"></script>
 
 
@@ -37,88 +34,137 @@
 <body>
 
 <div id="page-wrap">
-<header>
-    <a href="/"><img src="{% static 'icon.png' %} "></a>
-    <a href="/" title="На главную" id="logo">Сайт киновселенной Марвел</a> <span id="contact"><br>
+    <header>
+        <a href="/"><img src="{% static 'icon.jpg' %} " class="homephoto"></a><br>
+        <a href="/" title="На главную" id="logo">Сайт киновселенной Марвел</a> <span id="contact"><br>
 
-    <form action="{% url 'movies' %}" method="get" ></span>
-    <input type="text" class="field" placeholder="Найти на сайте" name="q"/>
-    <button type="submit" id="but-search">Поиск</button>
-    </form></a><br>
-<div id="id_clock"></div>
-    <script>digitalClock();</script>
+    <form action="{% url 'movies' %}" method="get"></span>
+        <input type="text" class="field" placeholder="Найти на сайте" name="q"/>
+        <button type="submit" id="but-search">Поиск</button>
+        </form></a>
+        <div id="id_clock"></div>
+        <script>digitalClock();</script>
         <!-- при регистрации менялось надпись регистрация на имя зарегистрированного пользователя  -->
 
-    {% if request.user.is_authenticated %} <!--Если пользователь зарегистрирован то отображается Имя ниже
+        {% if request.user.is_authenticated %} <!--Если пользователь зарегистрирован то отображается Имя ниже
      иначе обычная страница about-->
-    <h4 id="users">Профиль:{{ user.username }}
-        <a href="{% url 'logout' %}" id="exit">Выйти</a></h4>
-    {% else %} <!-- Иначе отображается ссылка регистрации "Войти" -->
-    <span class="right"> <span class="contact"><a href="{% url 'reg' %}"title="Зарегистрироваться">Регистрация</a>
+
+        <h4 id="users">Профиль:{{ user.username }} ✓</h4>
+        <h4 id="users">Дата регистрации:{{ user.date_joined }}</h4>
+
+        <a href="{% url 'logout' %}" id="exit">Выйти из профиля</a>
+        {% else %} <!-- Иначе отображается ссылка регистрации "Войти" -->
+        <span class="right"> <span class="contact"><a href="{% url 'reg' %}" title="Зарегистрироваться">Регистрация</a>
 
         <span class="contact"><a href="{% url 'auth' %}" title="Введите ваш логин и пароль">Вход</a>
             {% endif %}
         <span class="contact"><a href='/admin' title="Админ" <img src="{% static 'icon.png' %} ">Админка</a>
+    </header>
 
-</header>
+
+    <div class="clear"><br>
+        <center>
+            <div id="menu">Разделы
+                <hr/>
+                <div id="menuHrefs"></div>
+                <a href="/news" id="menu4">Новости</a>
+                <a href="{% url 'about_us' %}" id="menu4">О нас</a>
+                <a href="/actors" id="menu4">Актёры и актрисы</a>
+                <a href="/list" id="menu4">Наши товары</a>
+                <a href="/movie" id="menu4">Кинофильмы</a>
+                <a href="/series" id="menu4">Сериалы</a>
+                <a href="/trailers" id="menu4">Трейлеры 2022 NEW</a>
+                <a href="/feed" id="menu4">Обратная связь</a>
+                <a href="/add" id="menu4">Добавить фильм*</a>
+
+            </div>
+
+        </center>
+        <br>
+        {% block header %}
+        <div id="wrapper">
+            <div id="articles">
+                <article>
+                    <h3 align="center">ИНФОРМАЦИЯ</h3>
+                     <a href="{% url 'about' %}"><img src="{% static 'aveng.jpg' %}" class="imgabout"></a>
+                    <p>Мстители </p>
+                    <h5 id="menu">«Мсти́тели» (англ. Avengers) — элитная команда супергероев из комиксов компании Marvel Comics.
+                        Она была создана писателем Стэном Ли и художником Джеком Кирби и впервые появилась в комиксе The
+                        Avengersruen #1 в сентябре 1963 года.
+
+                        Мстители, прозванные впоследствии «Самыми могучими героями Земли», первоначально состояли из
+                        Человека-муравья, Осы, Тора, Железного человека и Халка. Однако с самого начала в составе
+                        команды стали происходить изменения: Халк вскоре покинул Мстителей[1], и к ним присоединился
+                        Капитан Америка[2]. Изменяющийся состав стал визитной карточкой команды, хотя некоторое
+                        постоянство всё-таки сохранялось: Мстители сражались с такими врагами, одолеть которых в
+                        одиночку не мог ни один супергерой — так появилась фирменная фраза: «Мстители, общий сбор!»
+                        (англ. Avengers Assemble!). За всё время существования команды в ней побывали люди, мутанты,
+                        роботы, боги, пришельцы, сверхъестественные существа и даже бывшие злодеи. </h5>
+
+                </article>
+
+                <article>
+                    <h3 align="center" >НОВОСТИ</h3>
+                    {% for n in page_obj2 %}
+                    <a href="{% url 'news' %}"><img src="{{n.image.url}}" class="imgabout"></a>
+
+                     <h5 id="menu" align="center">{{ n.news }}</h5>
+                     <h5 id="menu" align="center">{{ n.content }}</h5>
+                    <hr>
+                     <h5 align="center">Добавлено: {{n.time_create}}</h5>
+                    <h5 align="center"><a href="{% url 'news' %}">Перейти ко всем новостям</a></h5>
+                     {% for n in page_obj2.paginator.page_range %} <!--                 -->
+                        <a href="?page={{n}}" id="paginatio">{{n}} </a>
+                    {% endfor %}
+                    {% endfor %}
+                </article>
 
 
-<div class="clear"> <br>
-    <center>
-        <div id="menu">Разделы<hr/>
-            <div id="menuHrefs"> </div>
-            <a href="/news" id="menu1">Новости</a>
-            <a href="{% url 'about_us' %}" id="menu2">О нас</a>
 
-            <a href="/list" id="menu4">Киновеселенная по порядку</a>
-            <a href="/movie" id="menu5">Кинофильмы</a>
-            <a href="/series" id="menu5">Сериалы</a>
-            <a href="/feed" id="menu6">Обратная связь</a>
-            <a href="/add" id="menu6">Добавить фильм</a>
+                <article id="feedabou">
+                <h3 align="center">НАША ОБРАТНАЯ СВЯЗЬ</h3>
+                    <a href="{% url 'feed' %}"><img src="{% static 'feed.jpg' %} " class="imgabout"></a>
+
+                    {% for f in page_obj1 %}
+                    <img src="{{ f.images.url }}" class="feedabout">
+                <h7 align="center" id="menu"><b>{{ f.time_create }}</b></h7><br>
+                <h9 align="center"><b>Имя:</b> {{ f.name }}</h9><br>
+                <h7 align="center"><b>Email:</b> {{ f.email }}</h7><br>
+                <h7 align="center" id="text"> <b>Текст: </b>{{ f.text }}</h7><br><br>
+                        <hr>
+                {% endfor %}
+                    <form action="{% url 'feed' %}">
+                        <div align="center"><button type="submit">Добавление ваших пожеланий</button></div>
+                    </form>
+
+                    <ul>
+                    {% for f in page_obj1.paginator.page_range %} <!--                 -->
+                        <a href="?page={{f}}" id="paginatio">{{f}} </a>
+                    {% endfor %}
+                </ul>
+                </article>
+
+
+            </div>
+            <div class="clear"><br>
+                <div id="main_soc_block">
+                    <div id="main_soc_block_in">
+                        <h5><a href="/reg" title="Регистрируйтесь">Регистрируйтесь</a> у нас, чтоб быть в курсе всего о
+                            новинках Марвел Студиос</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </center><br>
-{% block header %}
-    <div id="wrapper">
-        <div id="articles">
-            <article>
-                <img src="{% static 'aveng.jpg' %}">
-                <p>Мстители </p>
-                <h6>«Мсти́тели» (англ. Avengers) — элитная команда супергероев из комиксов компании Marvel Comics. Она была создана писателем Стэном Ли и художником Джеком Кирби и впервые появилась в комиксе The Avengersruen #1 в сентябре 1963 года.
-
-Мстители, прозванные впоследствии «Самыми могучими героями Земли», первоначально состояли из Человека-муравья, Осы, Тора, Железного человека и Халка. Однако с самого начала в составе команды стали происходить изменения: Халк вскоре покинул Мстителей[1], и к ним присоединился Капитан Америка[2]. Изменяющийся состав стал визитной карточкой команды, хотя некоторое постоянство всё-таки сохранялось: Мстители сражались с такими врагами, одолеть которых в одиночку не мог ни один супергерой — так появилась фирменная фраза: «Мстители, общий сбор!» (англ. Avengers Assemble!). За всё время существования команды в ней побывали люди, мутанты, роботы, боги, пришельцы, сверхъестественные существа и даже бывшие злодеи. </h6>
-            <a href="/">Показать полностью </a>
-            </article>
-            <article>
-                   <h5 id="menu1" align="center">Скоро здесь будут новости</h5>
-            </article>
-
-            <article>
-                <h5 id="menu1" align="center">Скоро здесь будет блог</h5>
-
-            </article>
-        </div>
-<div class="clear"><br>
-<div id="main_soc_block">
-    <div id="main_soc_block_in">
-        <h5><a href="/reg" title="Регистрируйтесь">Регистрируйтесь</a> у нас, чтоб  быть в курсе всего о новинках Марвел Студиос</h5>
     </div>
-</div>
-</div>
-    </div>
-</div>
-    <div id="movie">
-         {% for movies in movie_list %}
-                <div>{{movies.title}}</div>
 
-                <img src="{{ movie.poster.url }}" class="img-fluid" alt="" id="movies">
-        {% endfor %}
-    </div>
- {% endblock %}
-<footer>
-<h5>Все права защищены &copy; 2022</h5>
-    <a id="vk" href="https://vk.com/marvel?from=quick_search" target="_blank"><img src="{% static 'vk.png' %}" alt="Группа вконтакте" title="Вконтакте"/></a>
-    <a id="insta" href="https://www.instagram.com/" target="_blank"><img src="{% static 'insta.png' %}" alt="Группа вконтакте" title="Вконтакте"/></a>
-</footer>
+    {% endblock %}
+    <footer>
+        <h5>Все права защищены &copy; 2022</h5>
+        <a id="vk" href="https://vk.com/marvel?from=quick_search" target="_blank"><img src="{% static 'vk.png' %}"
+                                                                                       alt="Группа вконтакте"
+                                                                                       title="Вконтакте"/></a>
+        <a id="insta" href="https://www.instagram.com/" target="_blank"><img src="{% static 'insta.png' %}"
+                                                                             alt="Группа вконтакте" title="Вконтакте"/></a>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,22 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %} <title>Детали сериала</title>{% endblock %}
+{% block header %}
+<div class="detail_div">
+    <img src="{{ series.photo.url }}" class="img-detail">
+</div>
+<div class="detail_div">
+    <h3>Название сериала: {{ series.title }}</h3>
+
+    {% for genre in series.genres.all %}
+    <span><b>Жанр:</b> {{ genre.name }}</span><br>
+    {% endfor %}
+        <span><b>Год:</b> {{ series.year }}</span><br>
+        <span><b>Описание:</b> {{ series.context }}</span>
+
+</div>
+
+</div>
+
+
+{% endblock %}

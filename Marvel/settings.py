@@ -21,14 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1'
 
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # отладка проекта
+DEBUG = True  # отладка проекта True-режим отладки
 
 ALLOWED_HOSTS = ['127.0.0.1']  # разрешенные хосты, домены
 
 # Application definition
 
 INSTALLED_APPS = [  # добавление приложения
+	'payment',
 	'Marvels_Studio', # новое приложение
 	'rest_framework', # новое API
 	'debug_toolbar', # приложение DjangoToolBar
@@ -119,9 +122,9 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static/') # директория нашей
 STATICFILES = (os.path.join(BASE_DIR, 'static/')),
 # спсиок из каких директорий собирать нашу статику
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/' # добавляет префикс /media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # передать путь к директории media
-
+# BASE_DIR- ОПРЕДЕЛЯЕТ РАБОЧИЙ КАТАЛОГ
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -134,6 +137,6 @@ INTERNAL_IPS =[ # Django toll bar
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/var/tmp/django_cache',
+        'LOCATION': os.path.join(BASE_DIR, 'movie_cache'),
     }
 }

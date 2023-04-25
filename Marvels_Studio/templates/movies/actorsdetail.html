@@ -1,0 +1,16 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %} <title>Информация</title>{% endblock %}
+{% block header %}
+<div class="detail_div">
+ <h3 align="center">Информация о {{actors.name}}</h3>
+    <img src="{{ actors.image.url }}" id="img-actors">
+</div>
+<div class="detail_div">
+    <h3>{{ actors.title }}</h3>
+    <ul>
+        <span><b>Имя:</b> {{ actors.name }}</span><br>
+        <span><b>Возраст:</b> {{ actors.age }} лет</span><br>
+        <span><b>Информация:</b> {{ actors.description }}</span><br>
+        <span><b>Фильмы:</b> {{ actors. }}</span>
+    {% endblock %}

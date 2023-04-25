@@ -1,5 +1,5 @@
 from django.urls import reverse
-from django.db import models
+from django.db import models  # содержит базовые классы моделей
 from datetime import date
 
 
@@ -31,46 +31,6 @@ class Category(models.Model):  # импортируем models из django.db н
 	class Meta:
 		verbose_name = 'Категория'
 		verbose_name_plural = 'Категории'
-
-
-class Series(models.Model):
-	title = models.CharField("Название", max_length=30)
-	year = models.CharField("Год", max_length=4)
-	photo = models.ImageField("Постер", upload_to='series/%Y/%m/%d/')
-	time_create = models.DateTimeField(auto_now_add=True)
-	time_update = models.DateTimeField(auto_now=True)
-	url = models.SlugField(max_length=30, unique=True)
-	cat = models.ManyToManyField(Category, verbose_name='Категории')
-	is_published = models.BooleanField('Публикация', default=True)
-
-	def __str__(self):
-		return self.title
-
-	class Meta:
-		verbose_name = "Сериал"
-		verbose_name_plural = "Сериалы"
-
-
-
-# работающий класс
-
-
-class Actor(models.Model):
-	name = models.CharField('Имена актёров', max_length=150)
-	age = models.PositiveSmallIntegerField('Возраст актёров', default=0)
-	description = models.TextField('Описание', max_length=1500)
-	image = models.ImageField('Фотография актёра', upload_to='actor/%Y/%m/%d/', default='default title')
-
-
-	def __str__(self):
-		return self.name
-
-	class Meta:
-		verbose_name = "Актёр"
-		verbose_name_plural = "Актёры"
-
-
-# работающий класс
 
 
 class Direction(models.Model):
@@ -106,7 +66,24 @@ class Genre(models.Model):
 # работающий класс
 
 
-class Movie(models.Model):
+class Actor(models.Model):
+	name = models.CharField('Имена актёров', max_length=150)
+	age = models.PositiveSmallIntegerField('Возраст актёров', default=0)
+	description = models.TextField('Описание', max_length=1500)
+	image = models.ImageField('Фотография актёра', upload_to='actor/')
+	url = models.SlugField(max_length=130, unique=True)
+
+
+	def __str__(self):
+		return self.name
+
+	class Meta:
+		verbose_name = "Актёр"
+		verbose_name_plural = "Актёры"
+
+
+
+class Movie(models.Model):  # наследуемся от класса Model
 	title = models.CharField("Название", max_length=100)
 	tagline = models.CharField("Слоган", max_length=100, default='')
 	description = models.TextField("Описание")
@@ -127,7 +104,9 @@ class Movie(models.Model):
 	fees_in_world = models.PositiveSmallIntegerField(
 		'Сборы в мире', default=0, help_text='указывать в долларах'
 	)
-
+	fees_in_world = models.PositiveSmallIntegerField(
+		'Сборы в мире', default=0, help_text='указывать в долларах'
+	)
 	category = models.ForeignKey(  # Foreign - отношение Многие к одному
 		# указываем модель катергории Category, обязательный аргумент on_delete=models.SET_NULL
 		# SET_NULL указывает что при удалении поле будет равно нулю
@@ -136,19 +115,18 @@ class Movie(models.Model):
 	# time_create = models.DateTimeField(auto_now_add=True)
 	url = models.SlugField(max_length=130, unique=True)
 	# draft - черновик
+
 	draft = models.BooleanField('Черновик', default=False)
-	time_create = models.DateTimeField(auto_now_add=True, null=True)
+	time_create = models.DateTimeField("Дата создания", auto_now=True)
 	is_published = models.BooleanField("Публикация", default=True)
 
 	def __str__(self):
 		return self.title
 
-	def get_absolute_url(self):
-		return reverse("detail", kwargs={"slug": self.url})
-
 	class Meta:
 		verbose_name = 'Фильм'
 		verbose_name_plural = 'Фильмы'
+
 
 
 # ordering = ['time_create', 'title']
@@ -189,6 +167,24 @@ class RatingStar(models.Model):
 
 # Рейтинг
 
+class Series(models.Model):
+	title = models.CharField("Название", max_length=30)
+	context = models.TextField("Описание", max_length=5000, null=True)
+	genres = models.ManyToManyField(Genre, verbose_name='жанры')
+	year = models.CharField("Год", max_length=4)
+	photo = models.ImageField("Постер", upload_to='series/%Y/%m/%d/')
+	time_create = models.DateTimeField(auto_now_add=True)
+	time_update = models.DateTimeField(auto_now=True)
+	url = models.SlugField(max_length=30, unique=True)
+	cat = models.ManyToManyField(Category, verbose_name='Категории')
+	is_published = models.BooleanField('Публикация', default=True)
+
+	def __str__(self):
+		return self.title
+
+	class Meta:
+		verbose_name = "Сериал"
+		verbose_name_plural = "Сериалы"
 
 class Rating(models.Model):
 	ip = models.CharField('IP адрес', max_length=15)
@@ -220,7 +216,7 @@ class Reviews(models.Model):
 		verbose_name = 'Отзыв'
 		verbose_name_plural = 'Отзывы'
 
-
+# статьи
 class Articles(models.Model):
 	name = models.CharField("Название статьи", max_length=255)
 	text = models.TextField("Содержание статьи")
@@ -233,6 +229,7 @@ class Articles(models.Model):
 		verbose_name_plural = 'Статьи'
 
 
+# о нас
 class Info(models.Model):
 	textinfo = models.TextField("Информация о нас")
 	date_create = models.DateTimeField("Дата публикации")
@@ -242,6 +239,56 @@ class Info(models.Model):
 		return f'{self.textinfo}'
 
 	class Meta:
-		verbose_name='О нас'
+		verbose_name = 'О нас'
 		verbose_name_plural = 'О нас'
-# Create your models here.
+
+
+class News(models.Model):
+	news = models.CharField("Заголовок новостей", max_length=255, help_text='Введите заголовок новостей')
+	content = models.TextField("Содержание", max_length=50000, help_text='Введите содержание статьи')
+	image = models.ImageField("Изображение статьи", upload_to="News/")
+	time_create = models.DateTimeField("Дата создания", auto_now=True)
+	is_published = models.BooleanField("Публикация", default=True)
+
+	def __str__(self):
+		return f'{self.news}'
+
+	class Meta:
+		verbose_name = 'Новость'
+		verbose_name_plural = 'Новости'
+
+
+class Feed(models.Model):
+	name = models.CharField("Имя", max_length=255, help_text='Введите ваше имя')
+	email = models.EmailField("Введите ваш email", help_text='Введите ваш email')
+	text = models.TextField("Сообщение", max_length=5000)
+
+	time_create = models.DateTimeField("Дата создания", auto_now=True)
+
+	def __str__(self):
+		return f'{self.name}'
+
+	class Meta:
+		verbose_name = 'Обратная связь'
+		verbose_name_plural = 'Обратная связь'
+
+
+class SalesM(models.Model):
+	code = models.IntegerField("Код товара", help_text='Введите код товара')
+	title = models.CharField("Наименование товара", max_length=255, help_text='Введите наименование товара')
+	sale = models.TextField("Содержание", max_length=50000, help_text='Введите содержание статьи')
+	availability = models.IntegerField("Наличие", help_text='Введите количество товара в налчиии')
+	image = models.ImageField("Изображение товара", upload_to="Sales/")
+	price = models.IntegerField("Цена товара", help_text='Введите цену товара')
+	is_published = models.BooleanField("Публикация", default=True)
+
+	def __str__(self):
+		return f'{self.title}'
+
+	class Meta:
+		verbose_name = 'Продажа'
+		verbose_name_plural = 'Продажи'
+
+
+
+

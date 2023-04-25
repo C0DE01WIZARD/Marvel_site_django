@@ -2,11 +2,15 @@
 {% load static %}
 {% block title %}<title>Новости</title>{% endblock %}
 </head>
-<body>
  {% block header %}
 <h3 align="center">Новости</h3>
-<p align="center">Новостей пока нет, но мы над этим рабоаем</p>
- <img src="{% static 'kamni.jpg'%}" id="kamni-news">
+ <hr>
+ {% for n in newss %}
+
+ <img src="{{n.image.url}}" id="newsimg">
+ <h1 id="" align="center">{{ n.news }}</h1>
+ <h5 id="menu" align="center">{{ n.content }}</h5>
+ <h5 align="center">Добавлено: {{n.time_create}}</h5>
+ <hr>
+ {% endfor %}
  {% endblock %}
-</body>
-</html>

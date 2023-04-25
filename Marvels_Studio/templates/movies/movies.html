@@ -6,26 +6,33 @@
     {% block header %}
 <h3 align="center">Кинофильмы</h3>
       <!--pagination-->
+    <nav>
+        <h5>Год</h5>
+            <input type="checkbox">2011
+
             <nav>
                 <ul>
                     {% for p in page_obj.paginator.page_range %} <!--                 -->
-
                         <a href="?page={{p}}" id="pagination">{{p}} </a>
-
                     {% endfor %}
                 </ul>
 
             </nav>
+    </nav>
     <div id="movie">
         <div class="row">
             {% for movie in page_obj %}
             <div class="col-md-4 product-men">
-                <img src="{{ movie.poster.url }}" id="movies">
+
+                <a href="{% url 'movie' movie.url %}" class="editContent">
+                    <img src="{{ movie.poster.url }}" id="movies"></a>
+
                 <div>
-                    <a href="{{ movie.url }}" class="editContent">{{ movie.title }}</a>
+                    <a href="{% url 'movie' movie.url %}" class="editContent">{{ movie.title }}</a>
                     <h4>Страна:   {{ movie.country}}</h4>
                         <h3><span>{{ movie.year }} г. </span></h3>
                         <span>Слоган: {{ movie.tagline }}</span>
+                        <h3>Добавлено: {{movie.time_create}}</h3>
 
                 </div>
             </div>
