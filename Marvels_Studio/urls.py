@@ -6,6 +6,8 @@ from Marvels_Studio.views import *
 
 urlpatterns = [  # список url
 
+	path('search/', SearchResult.as_view(), name='search' ), # поиск по сайту
+
 	path('pay/', Pay.as_view(), name='pay'),
 
 	path('news/', views.Newss, name='news'),  #

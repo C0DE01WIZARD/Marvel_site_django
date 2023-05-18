@@ -38,10 +38,11 @@
         <a href="/"><img src="{% static 'icon.jpg' %} " class="homephoto"></a><br>
         <a href="/" title="На главную" id="logo">Сайт киновселенной Марвел</a> <span id="contact"><br>
 
-    <form action="{% url 'movies' %}" method="get"></span>
-        <input type="text" class="field" placeholder="Найти на сайте" name="q"/>
+    <form action="{% url 'search' %}" method="get"></span>
+        <input name="q" type="text" placeholder="Найти на сайте">
         <button type="submit" id="but-search">Поиск</button>
         </form></a>
+
         <div id="id_clock"></div>
         <script>digitalClock();</script>
         <!-- при регистрации менялось надпись регистрация на имя зарегистрированного пользователя  -->

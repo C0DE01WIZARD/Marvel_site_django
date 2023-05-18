@@ -19,7 +19,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *  # импорт формы из forms.py
 from .models import *
 from django.http import HttpResponse
+from django.db.models import Q
 
+
+class SearchResult(ListView):
+	model = Movie
+	template_name = 'movies/searchresult.html'
+
+	def get_queryset(self):
+		query = self.request.GET.get('q')
+		object_list = Movie.objects.filter(
+			Q(title=query)
+		)
+		return object_list
 
 class Trailer(ListView):
 	model = Movie

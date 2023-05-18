@@ -1,0 +1,16 @@
+{% extends "movies/about.html" %}
+{% load static %}
+{% block title %}<title>Результаты поиска</title> {% endblock %}
+{% block header %}
+<h3>Результаты поиска по сайту</h3>
+
+<ul>
+{% for movie in object_list %}
+    <li>
+        <img src="{{ movie.poster.url }}" id="movies">
+        <h1>{{ movie.title }}, {{movie.year}} г. </h1>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
